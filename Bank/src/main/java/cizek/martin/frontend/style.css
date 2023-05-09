@@ -1,0 +1,110 @@
+html {
+  height: 100%;
+  font-family: 'Gill Sans', sans-serif;
+  color: #FFFFFF;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, #5C0C72, #0C5372);
+}
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+#flogin {
+  height: 50%;
+  min-width: 50%;
+  text-align: center;
+  font-size: 24px;
+}
+input {
+  background-color: #096B95;
+  width: 90%;
+  height: 15%;
+  font-size: 24px; 
+  color: #FFFFFF;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+#fslogin {
+  height: 70%;
+  margin: auto;
+  background-color: #440475;
+}
+input[type=submit]:hover {
+  background-color: #0C89BE;
+}
+#f2fa {
+  height: 50%;
+  min-width: 50%;
+  text-align: center;
+  font-size: 24px;
+}
+#fs2fa {
+  background-color: #440475;
+}
+a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+header {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  font-size: 32px;
+}
+#bankbody {
+  justify-content: flex-start;
+}
+#flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+#finput {
+  width: 40%;
+  order: 1;
+  font-size: 20px;
+}
+#foutput {
+  width: 40%;
+  order: 2;
+  font-size: 20px;
+}
+#fsinput, #fsoutput {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+#fsinput label, #fsoutput label {
+  width: 40%;
+}
+#iamount, #oamount {
+  width: 40%;
+}
+select {
+  background-color: #096B95;
+  color: white;
+  height: 15%;
+  font-size: 24px;
+  width: 40%;
+}
+#hist {
+  text-align: left;
+  width: 90%;
+}
+#hist a {
+  display: block;
+  text-align: right;
+}

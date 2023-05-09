@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cs">
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <title>StinBank</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+ </head>
+<body id="bankbody">
+  <header>
+    <a href="bank.html">StinBank</a>
+    <a href="index.html">Odhlásit</a>
+  </header>
+  <div id="flex">
+  <form id="finput">
+    <p>Příchozí platba</p>
+    <fieldset id="fsinput">
+      <label for="iamount" id="am">Částka:</label>
+      <label for="icurrency">Měna:</label>
+      <br>
+      <input type="number" id="iamount" name="iamount">
+      <select name="icurrencies" id="icurrencies">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+      </select>
+      <br>
+      <input type="submit" value="Potvrdit" />
+    </fieldset>
+  </form>
+  <form id="foutput">
+    <p>Výchozí platba</p>
+    <fieldset id="fsoutput">
+      <label for="oamount" id="am">Částka:</label>
+      <label for="ocurrency">Měna:</label>
+      <br>
+      <input type="number" id="iamount" name="iamount">
+      <select name="ocurrencies" id="ocurrencies">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+      </select>
+      <br>
+      <input type="submit" value="Potvrdit" />
+    </fieldset>
+  </form>
+  </div>
+<section id="hist">
+<h2>Historie plateb</h2>
+<p>todo</p>
+<a href="history.html">Zobrazit celou historii</a>
+</section>
+</body>
+</html>
