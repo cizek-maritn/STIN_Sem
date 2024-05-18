@@ -43,7 +43,7 @@ class Account {
                 bw.write(n+";"+p+";"+c);
                 bw.newLine();
                 bw.close();
-                File newFile = new File(n+".txt");
+                File newFile = new File("./"+n+".txt");
                 newFile.createNewFile();
                 return newFile;
             } catch (IOException e) {
