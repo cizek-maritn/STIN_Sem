@@ -16,15 +16,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class PostControllerTest {
     
     public PostControllerTest() {
     }
     
-    @InjectMocks
-    private PostController postController;
+    @Autowired
+    private MockMvc mvc;
 
     @Test
     public void PostControllerCorrect() {
@@ -46,5 +55,43 @@ public class PostControllerTest {
         
         int result = PostController.handleApiCall(formData);
         Assertions.assertEquals(-1, result);
+    }
+    
+    @Test
+    public void LoginHandleCorrect() throws Exception {
+        mvc.perform(post("/submitLogin")
+                .param("name", "test")
+                .param("pwd", "test"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("success.html?name=test"));
+    }
+    
+    @Test
+    public void LoginHandleWorng() throws Exception {
+        mvc.perform(post("/submitLogin")
+                .param("name", "tes")
+                .param("pwd", "test"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("login.html?info=1"));
+    }
+    
+    @Test
+    public void RegisterHandleCorrect() throws Exception {
+        mvc.perform(post("/submitRegister")
+                .param("name", "alfons")
+                .param("pwd", "Abcdef12G")
+                .param("card", "1234567890123456"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("success.html?name=alfons"));
+    }
+    
+    @Test
+    public void RegisterHandleWrong() throws Exception {
+        mvc.perform(post("/submitRegister")
+                .param("name", "alfons")
+                .param("pwd", "Abc")
+                .param("card", "1234567890123456"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("register.html?info=3"));
     }
 }

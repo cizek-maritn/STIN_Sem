@@ -1,0 +1,39 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stin Forecast</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>STIN</h1>
+    </header>
+    <span id="warn"></span>
+    <form action="/submitLogin" method="post">
+        <label for="name">Uživatelské jméno:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="pwd">Heslo:</label>
+        <input type="password" id="pwd" name="pwd"><br><br>
+        <input type="submit" value="Odeslat">
+    </form>
+    <p>Pokud nemáte účet, vytvořte si jej <a href="register.html">zde.</a></p>
+    <footer>
+        <p>Martin Čížek</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const info = urlParams.get("info");
+    if (info==1) {
+        document.getElementById("warn").innerHTML = "Chybné přihlašovací údaje";
+        document.getElementById("warn").style.color = "white";
+        document.getElementById("warn").style.border = "3px solid red"
+    }
+</script>

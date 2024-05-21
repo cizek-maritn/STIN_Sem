@@ -1,5 +1,5 @@
 html, body {
-    height: auto;
+    min-height: 100vh;
   }
   body {
     background-image: linear-gradient(to bottom right, #130654, #45108f);
@@ -8,6 +8,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     margin-top: 0px;
     margin-bottom: 0px;
   }
@@ -29,14 +30,14 @@ html, body {
     width: 95%;
   }
   nav {
-    height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     width: 25%;
   }
   .btn {
     border: 2px solid white;
-    height: 50%;
+    min-height: 50px;
     margin-left: 1%;
     margin-right: 1%;
     font-size: medium;
@@ -65,4 +66,16 @@ html, body {
   img {
     height: 360px;
     width: auto;
+  }
+  a:link, a:visited, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+  form {
+    color: white;
+    border: 5px solid white;
+    padding: 5%;
+  }
+  p {
+    color: white;
   }
