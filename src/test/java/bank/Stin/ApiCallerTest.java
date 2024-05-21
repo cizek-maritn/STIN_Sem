@@ -4,6 +4,7 @@
  */
 package bank.Stin;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -23,11 +24,16 @@ public class ApiCallerTest {
     
     @Test
     public void CurrentApiCallCorrect() {
-        Assertions.assertNotEquals(-1,ApiCaller.CallApiCurrent("50.46","15.3","1"));
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.CallApiCurrent("50.46","15.3","1");
+        Assertions.assertFalse(Arrays.equals(arr1,arr2));
+        
     }
 
     @Test
     public void CurrentApiCallWrong() {
-        Assertions.assertEquals(-1, ApiCaller.CallApiCurrent("91.2", "15.3", "1"));
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.CallApiCurrent("91.2","15.3","1");
+        Assertions.assertArrayEquals(arr1,arr2);
     }
 }

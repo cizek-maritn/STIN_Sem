@@ -1,17 +1,95 @@
+<!-- src/main/resources/static/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>STIN Forecast</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stin Forecast</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Form Submission Successful!</h1>
-    <p>Thank you, <span id="n"></span>! We have received your submission.</p>
+    <header>
+        <h1>STIN</h1>
+        <nav id="logout">
+            <button class="btn reg"><a href="index.html">Odhlásit</a></button>
+        </nav>
+    </header>
+    <section id="graphicPaid">
+        <img src="imgs/img0.gif" id="wicon0">
+        <img src="imgs/img0.gif" id="wicon1">
+        <img src="imgs/img0.gif" id="wicon2">
+        <img src="imgs/img0.gif" id="wicon3">
+        <img src="imgs/img0.gif" id="wicon4">
+        <img src="imgs/img0.gif" id="wicon5">
+        <img src="imgs/img0.gif" id="wicon6">
+    </section>
+    <section id="wsecPaid">
+        <p id="w0">Loading...</p>
+        <p id="w1">Loading...</p>
+        <p id="w2">Loading...</p>
+        <p id="w3">Loading...</p>
+        <p id="w4">Loading...</p>
+        <p id="w5">Loading...</p>
+        <p id="w6">Loading...</p>
+    </section>
+    <main id="paidMain">
+        <form id="form1">
+            <label for="places">Oblíbená místa:</label>
+            <select name="places" id="cars"></select>
+        </form>
+        <form id="form2">
+            <p>Nové oblíbené místo</p>
+            <label for="newPlace">Jméno:</label>
+            <input type="text" id="newPlace" name="newPlace"><br><br>
+            <input type="submit" value="Potvrdit">
+        </form>
+    </main>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        //script pieced together from chatgpt
+        var map = L.map('map').setView([54.5260, 15.2551], 4); // Coordinates roughly at the center of Europe
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var lastMarker; // Variable to keep track of the last marker
+
+        // Add a marker when the map is clicked
+        map.on('click', function(e) {
+            var lat = e.latlng.lat.toFixed(2);
+            var lng = e.latlng.lng.toFixed(2);
+
+            // Remove the last marker if it exists
+            if (lastMarker) {
+                map.removeLayer(lastMarker);
+            }
+
+            // Create a new marker at the clicked location
+            lastMarker = L.marker([lat, lng]).addTo(map);
+
+            PostData(lat,lng,1);
+
+            // Optional: bind a popup to the marker displaying the coordinates
+            lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+        });
+    </script>
+    <footer>
+        <p>Martin Čížek</p>
+    </footer>
 </body>
 </html>
 
 <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const name = urlParams.get("name");
-    document.getElementById("n").innerHTML=name;
+    //const queryString = window.location.search;
+    //const urlParams = new URLSearchParams(queryString);
+    //const name = urlParams.get("name");
+    //document.getElementById("n").innerHTML=name;
+    document.addEventListener("DOMContentLoaded", function() {
+        PostData("50.46", "15.3", "7");
+    });
 </script>

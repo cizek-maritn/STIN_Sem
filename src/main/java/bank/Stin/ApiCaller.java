@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import org.json.*;
 
 public class ApiCaller {
-    public static int CallApiCurrent(String lat, String lon, String days) {
+    public static int[] CallApiCurrent(String lat, String lon, String days) {
         String apiCall=CallBuilder(lat,lon,days);
         String[] command = {
             "curl",
@@ -41,22 +41,26 @@ public class ApiCaller {
                 int exitCode = process.waitFor();
                 if (exitCode == 0) {
                     int ct = LocalTime.now().getHour();
-                    return wcArr.getInt(ct);
+                    int[] wcodes = new int[Integer.parseInt(days)];
+                    for (int i=0;i<Integer.parseInt(days);i++) {
+                        wcodes[i]=wcArr.getInt(ct+(i*24));
+                    }
+                    return wcodes;
                 } else {
                     System.err.println("Curl command failed with exit code " + exitCode);
-                    return -1;
+                    return new int[] {-1};
                 }
                 
             } catch (JSONException e) {
                 System.out.println("Missing hourly field.");
-                return -1;
+                return new int[] {-1};
             }
             
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Something completely went wrong: "+e);
         }
-        return -1;
+        return new int[] {-1};
     }
     
     private static String CallBuilder(String lat, String lon, String days) {

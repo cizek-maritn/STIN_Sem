@@ -35,6 +35,9 @@ html, body {
     align-items: center;
     width: 25%;
   }
+  #logout {
+    flex-direction: row-reverse;
+  }
   .btn {
     border: 2px solid white;
     min-height: 50px;
@@ -76,6 +79,28 @@ html, body {
     border: 5px solid white;
     padding: 5%;
   }
+  #form1, #form2 {
+    padding: 0%;
+    margin: 1%;
+  }
   p {
     color: white;
+  }
+  #graphicPaid img {
+    width: 13%;
+    height: auto;
+  }
+  #graphicPaid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  #wsecPaid {
+    width:95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  #paidMain {
+    height: auto;
   }

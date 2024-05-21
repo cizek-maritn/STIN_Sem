@@ -4,6 +4,7 @@
  */
 package bank.Stin;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
@@ -42,8 +43,9 @@ public class PostControllerTest {
         formData.put("lon","50.23");
         formData.put("days","1");
         
-        int result = PostController.handleApiCall(formData);
-        Assertions.assertNotEquals(-1, result);
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCall(formData);
+        Assertions.assertFalse(Arrays.equals(arr1,result));
     }
     
     @Test
@@ -53,8 +55,9 @@ public class PostControllerTest {
         formData.put("lon","50.23");
         formData.put("days","1");
         
-        int result = PostController.handleApiCall(formData);
-        Assertions.assertEquals(-1, result);
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCall(formData);
+        Assertions.assertArrayEquals(arr1,result);
     }
     
     @Test
