@@ -1,0 +1,49 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stin Forecast</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>STIN</h1>
+    </header>
+    <span id="warn"></span>
+    <form action="/submitRegister" method="post">
+        <label for="name">Uživatelské jméno:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="pwd">Heslo:</label>
+        <input type="password" id="pwd" name="pwd"><br><br>
+        <label for="card">Číslo karty:</label>
+        <input type="number" id="card" name="card"><br><br>
+        <input type="submit" value="Odeslat">
+    </form>
+    <p>Pokud máte účet, přihlašte se <a href="login.html">zde.</a></p>
+    <footer>
+        <p>Martin Čížek</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const info = urlParams.get("info");
+    switch (info) {
+        case 1:
+            document.getElementById("warn").innerHTML = "Jméno musí obsahovat pouze písmena anglické abecedy a čísla";
+            break;
+        case 2:
+            document.getElementById("warn").innerHTML = "Heslo musí být alespoň 6 znaků dlouhé, obsahovat alespoň 1 malé písmeno, alespoň 1 velké písmeno a alespoň 1 číslici";
+            break;
+        case 3:
+        document.getElementById("warn").innerHTML = "Karta má pro účely stránky 16 cifer";
+        break;
+    }
+    document.getElementById("warn").style.color = "white";
+    document.getElementById("warn").style.border = "3px solid red"
+</script>

@@ -7,21 +7,55 @@ package bank.Stin;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.io.File;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-<span class="fc" id="L13">public class PostController {</span>
+<span class="fc" id="L19">public class PostController {</span>
     
     @PostMapping(&quot;/submit&quot;)
     public static int handleApiCall(@RequestBody Map&lt;String, String&gt; formData) {
         // Process the data (e.g., save to database)
-<span class="fc" id="L18">        String lat = formData.get(&quot;lat&quot;);</span>
-<span class="fc" id="L19">        String lon = formData.get(&quot;lon&quot;);</span>
-<span class="fc" id="L20">        String day = formData.get(&quot;days&quot;);</span>
+<span class="fc" id="L24">        String lat = formData.get(&quot;lat&quot;);</span>
+<span class="fc" id="L25">        String lon = formData.get(&quot;lon&quot;);</span>
+<span class="fc" id="L26">        String day = formData.get(&quot;days&quot;);</span>
         
         // Prepare response data
-<span class="fc" id="L23">        int responseCode = ApiCaller.CallApiCurrent(lat, lon, day);</span>
-<span class="fc" id="L24">        return responseCode;</span>
+<span class="fc" id="L29">        int responseCode = ApiCaller.CallApiCurrent(lat, lon, day);</span>
+<span class="fc" id="L30">        return responseCode;</span>
+    }
+    
+    @PostMapping(&quot;/submitLogin&quot;)
+    public static RedirectView handleLoginAttempt(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;pwd&quot;) String pwd, RedirectAttributes ra) {
+<span class="fc" id="L35">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
+<span class="fc" id="L36">        String s = Account.login(f, name, pwd);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (s!=null) {</span>
+<span class="fc" id="L38">            ra.addAttribute(&quot;name&quot;, name);</span>
+            //System.out.println(ra);
+<span class="fc" id="L40">            return new RedirectView(&quot;success.html&quot;);</span>
+        } else {
+<span class="fc" id="L42">            ra.addAttribute(&quot;info&quot;, 1);</span>
+<span class="fc" id="L43">            return new RedirectView(&quot;login.html&quot;);</span>
+        }
+    }
+    
+    @PostMapping(&quot;/submitRegister&quot;)
+    public static RedirectView handleRegisterAttempt(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;pwd&quot;) String pwd, @RequestParam(&quot;card&quot;) long card, RedirectAttributes ra) {
+<span class="fc" id="L49">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
+<span class="fc" id="L50">        int s = Account.register(f, name, pwd, card);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (s==1) {</span>
+<span class="fc" id="L52">            ra.addAttribute(&quot;name&quot;, name);</span>
+            //System.out.println(ra);
+<span class="fc" id="L54">            return new RedirectView(&quot;success.html&quot;);</span>
+        } else {
+<span class="fc" id="L56">            ra.addAttribute(&quot;info&quot;, s);</span>
+<span class="fc" id="L57">            return new RedirectView(&quot;register.html&quot;);</span>
+        }
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

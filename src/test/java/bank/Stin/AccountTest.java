@@ -29,9 +29,8 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.login(login, "houba", "password");
-        Assertions.assertNotNull(f);
-        Assertions.assertTrue(f instanceof File);
+        String s = Account.login(login, "houba", "password");
+        Assertions.assertEquals("houba",s);
     }
     
     @Test
@@ -39,8 +38,8 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.login(login, "uagfbailjd", "password");
-        Assertions.assertNull(f);
+        String s = Account.login(login, "uagfbailjd", "password");
+        Assertions.assertNull(s);
     }
     
     @Test
@@ -48,9 +47,8 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.register(login, "alfons", "Password1", 1234567890123456L);
-        Assertions.assertNotNull(f);
-        Assertions.assertTrue(f instanceof File);
+        int i = Account.register(login, "alfons", "Password1", 1234567890123456L);
+        Assertions.assertEquals(1,i);
     }
     
     @Test
@@ -58,8 +56,8 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.register(login, "(lk=56./", "Password1", 1234567890123456L);
-        Assertions.assertNull(f);
+        int i = Account.register(login, "(lk=56./", "Password1", 1234567890123456L);
+        Assertions.assertEquals(2,i);
     }
     
     @Test
@@ -67,8 +65,8 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.register(login, "horac", "--- aihsf+1=", 1234567890123456L);
-        Assertions.assertNull(f);
+        int i = Account.register(login, "horac", "--- aihsf+1=", 1234567890123456L);
+        Assertions.assertEquals(3,i);
     }
     
     @Test
@@ -76,7 +74,7 @@ public class AccountTest {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("testfiles/login.txt");
         File login = new File (resource.getFile());
-        File f = Account.register(login, "horac", "Password1", 65124);
-        Assertions.assertNull(f);
+        int i = Account.register(login, "horac", "Password1", 65124);
+        Assertions.assertEquals(4,i);
     }
 }
