@@ -1,0 +1,64 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stin Forecast</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>STIN</h1>
+        <nav>
+            <button class="btn sign">Přihlásit se</button>
+            <button class="btn reg">Zaregistrovat</button>
+        </nav>
+    </header>
+    <main>
+        <section id="graphic">
+            <img src="imgs/img0.gif" id="wicon">
+        </section>
+        <section id="wsec">
+            <p id="written">Loading...</p>
+        </section>
+    </main>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        //script pieced together from chatgpt
+        var map = L.map('map').setView([54.5260, 15.2551], 4); // Coordinates roughly at the center of Europe
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var lastMarker; // Variable to keep track of the last marker
+
+        // Add a marker when the map is clicked
+        map.on('click', function(e) {
+            var lat = e.latlng.lat.toFixed(2);
+            var lng = e.latlng.lng.toFixed(2);
+
+            // Remove the last marker if it exists
+            if (lastMarker) {
+                map.removeLayer(lastMarker);
+            }
+
+            // Create a new marker at the clicked location
+            lastMarker = L.marker([lat, lng]).addTo(map);
+
+            PostData(lat,lng,1);
+
+            // Optional: bind a popup to the marker displaying the coordinates
+            lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+        });
+    </script>
+    <footer>
+        <p>Martin Čížek</p>
+    </footer>
+</body>
+</html>

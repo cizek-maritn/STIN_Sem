@@ -16,4 +16,8 @@ public class DataChecker {
         String s=Long.toString(n);
         return s.length()==16;
     }
+    
+    public static boolean passChecker(String s) {
+        return s.matches(".*\\d.*") && s.matches(".*[A-Z].*") && s.matches(".*[a-z].*") && s.length()>=6;
+    }
 }

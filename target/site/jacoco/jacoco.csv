@@ -1,6 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Stin,bank.Stin,DataChecker,3,15,0,2,1,3,1,3,1,2
-Stin,bank.Stin,HelloController,0,5,0,0,0,2,0,2,0,2
-Stin,bank.Stin,Application,5,34,0,2,2,8,1,4,1,3
+Stin,bank.Stin,DataChecker,3,35,0,10,1,4,1,8,1,3
+Stin,bank.Stin,PostController,0,25,0,0,0,6,0,2,0,2
+Stin,bank.Stin,HelloController,14,0,0,0,4,0,2,0,2,0
+Stin,bank.Stin,Application,8,0,0,0,3,0,2,0,2,0
 Stin,bank.Stin,ApiCaller,16,98,1,3,6,19,2,3,1,2
-Stin,bank.Stin,Account,14,101,1,17,7,28,2,10,1,2
+Stin,bank.Stin,Account,14,108,2,20,7,28,3,11,1,2
