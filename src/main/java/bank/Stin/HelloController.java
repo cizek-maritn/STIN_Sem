@@ -4,13 +4,18 @@
  */
 package bank.Stin;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-    @GetMapping("/")
-    public String index() {
-        return "Hello World!";
+    
+    @GetMapping("/write")
+    public Map<String, String> getData() {
+        Map<String, String> response = new HashMap<>();
+        response.put("written", "Hello from Spring Boot!");
+        return response;
     }
 }

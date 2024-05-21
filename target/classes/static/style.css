@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+  }
+  body {
+    background-image: linear-gradient(to bottom right, #130654, #45108f);
+    background-attachment: fixed;
+    font-family: Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 360px;
+    width: 95%;
+  }
+  header {
+    background-color: #74aad1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 95%;
+  }
+  nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 25%;
+  }
+  .btn {
+    border: 2px solid white;
+    height: 50%;
+    margin-left: 1%;
+    margin-right: 1%;
+    font-size: medium;
+    color: white;
+  }
+  .sign {
+    background-color: inherit;
+  }
+  .sign:hover {
+    background-color: #55809e;
+  }
+  .reg {
+    background-color: #130654;
+  }
+  .reg:hover {
+    background-color: #0a0332;
+  }
+  #map {
+    height: 480px;
+    width: 80%;
+  }
+  section {
+    color: white;
+    height: auto;
+  }
+  img {
+    height: 360px;
+    width: auto;
+  }
