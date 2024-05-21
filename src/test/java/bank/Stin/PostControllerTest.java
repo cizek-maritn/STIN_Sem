@@ -63,7 +63,7 @@ public class PostControllerTest {
                 .param("name", "test")
                 .param("pwd", "test"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("success.html?name=test"));
+                .andExpect(redirectedUrl("forecast.html?name=test"));
     }
     
     @Test
@@ -82,7 +82,7 @@ public class PostControllerTest {
                 .param("pwd", "Abcdef12G")
                 .param("card", "1234567890123456"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("success.html?name=alfons"));
+                .andExpect(redirectedUrl("forecast.html?name=alfons"));
     }
     
     @Test

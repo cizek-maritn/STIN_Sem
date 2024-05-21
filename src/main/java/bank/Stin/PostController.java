@@ -37,7 +37,7 @@ public class PostController {
         if (s!=null) {
             ra.addAttribute("name", name);
             //System.out.println(ra);
-            return new RedirectView("success.html");
+            return new RedirectView("forecast.html");
         } else {
             ra.addAttribute("info", 1);
             return new RedirectView("login.html");
@@ -51,7 +51,7 @@ public class PostController {
         if (s==1) {
             ra.addAttribute("name", name);
             //System.out.println(ra);
-            return new RedirectView("success.html");
+            return new RedirectView("forecast.html");
         } else {
             ra.addAttribute("info", s);
             return new RedirectView("register.html");
