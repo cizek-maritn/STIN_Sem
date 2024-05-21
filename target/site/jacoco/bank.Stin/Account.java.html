@@ -33,7 +33,7 @@ import java.util.Scanner;
     
     public static File register(File f, String n, String p, long c) {
 <span class="fc" id="L35">        boolean nCheck=DataChecker.stringChecker(n);</span>
-<span class="fc" id="L36">        boolean pCheck=DataChecker.stringChecker(p);</span>
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">        boolean pCheck=DataChecker.stringChecker(p) &amp;&amp; DataChecker.passChecker(p);</span>
 <span class="fc" id="L37">        boolean cCheck=DataChecker.cardChecker(c);</span>
         
 <span class="fc bfc" id="L39" title="All 6 branches covered.">        if (nCheck &amp;&amp; pCheck &amp;&amp; cCheck) {</span>

@@ -7,16 +7,7 @@
     <title>Stin Forecast</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('/write')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("written").innerText = data.written;
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        });
-    </script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -28,7 +19,7 @@
     </header>
     <main>
         <section id="graphic">
-            <img src="imgs/img0.gif">
+            <img src="imgs/img0.gif" id="wicon">
         </section>
         <section id="wsec">
             <p id="written">Loading...</p>
@@ -60,9 +51,14 @@
             // Create a new marker at the clicked location
             lastMarker = L.marker([lat, lng]).addTo(map);
 
+            PostData(lat,lng,1);
+
             // Optional: bind a popup to the marker displaying the coordinates
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
         });
     </script>
+    <footer>
+        <p>Martin Čížek</p>
+    </footer>
 </body>
 </html>

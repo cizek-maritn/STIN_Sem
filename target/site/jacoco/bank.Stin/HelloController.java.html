@@ -4,14 +4,19 @@
  */
 package bank.Stin;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-<span class="fc" id="L11">public class HelloController {</span>
-    @GetMapping(&quot;/&quot;)
-    public String index() {
-<span class="fc" id="L14">        return &quot;Hello World!&quot;;</span>
+<span class="nc" id="L13">public class HelloController {</span>
+    
+    @GetMapping(&quot;/write&quot;)
+    public Map&lt;String, String&gt; getData() {
+<span class="nc" id="L17">        Map&lt;String, String&gt; response = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L18">        response.put(&quot;written&quot;, &quot;Hello from Spring Boot!&quot;);</span>
+<span class="nc" id="L19">        return response;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

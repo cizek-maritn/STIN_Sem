@@ -1,5 +1,6 @@
 bank\Stin\DataChecker.class
-bank\Stin\ApiCaller.class
 bank\Stin\HelloController.class
+bank\Stin\ApiCaller.class
 bank\Stin\Application.class
 bank\Stin\Account.class
+bank\Stin\PostController.class

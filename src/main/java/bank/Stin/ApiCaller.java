@@ -18,6 +18,7 @@ public class ApiCaller {
             "-X", "GET",
             apiCall, "--ssl-no-revoke"
         };
+        //System.out.println(command[3]);
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         
         try {
@@ -35,6 +36,7 @@ public class ApiCaller {
             try {
                 JSONObject hourly = obj.getJSONObject("hourly");
                 JSONArray wcArr = hourly.getJSONArray("weather_code");
+                //System.out.println(wcArr);
                 
                 int exitCode = process.waitFor();
                 if (exitCode == 0) {

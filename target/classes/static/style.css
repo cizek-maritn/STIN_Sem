@@ -1,5 +1,5 @@
 html, body {
-    height: 100%;
+    height: auto;
   }
   body {
     background-image: linear-gradient(to bottom right, #130654, #45108f);
@@ -19,7 +19,7 @@ html, body {
     height: 360px;
     width: 95%;
   }
-  header {
+  header, footer {
     background-color: #74aad1;
     display: flex;
     justify-content: space-between;
@@ -55,7 +55,7 @@ html, body {
     background-color: #0a0332;
   }
   #map {
-    height: 480px;
+    height: 600px;
     width: 80%;
   }
   section {
