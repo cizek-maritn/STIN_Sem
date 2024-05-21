@@ -16,5 +16,9 @@ package bank.Stin;
 <span class="fc" id="L16">        String s=Long.toString(n);</span>
 <span class="fc bfc" id="L17" title="All 2 branches covered.">        return s.length()==16;</span>
     }
+    
+    public static boolean passChecker(String s) {
+<span class="fc bfc" id="L21" title="All 8 branches covered.">        return s.matches(&quot;.*\\d.*&quot;) &amp;&amp; s.matches(&quot;.*[A-Z].*&quot;) &amp;&amp; s.matches(&quot;.*[a-z].*&quot;) &amp;&amp; s.length()&gt;=6;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

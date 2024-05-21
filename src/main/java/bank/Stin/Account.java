@@ -33,7 +33,7 @@ class Account {
     
     public static File register(File f, String n, String p, long c) {
         boolean nCheck=DataChecker.stringChecker(n);
-        boolean pCheck=DataChecker.stringChecker(p);
+        boolean pCheck=DataChecker.stringChecker(p) && DataChecker.passChecker(p);
         boolean cCheck=DataChecker.cardChecker(c);
         
         if (nCheck && pCheck && cCheck) {

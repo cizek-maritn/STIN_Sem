@@ -37,4 +37,29 @@ public class DataCheckerTest {
     public void numTestWrong() {
         Assertions.assertFalse(DataChecker.cardChecker(5612));
     }
+    
+    @Test
+    public void passTestCorrect() {
+        Assertions.assertTrue(DataChecker.passChecker("Horacio12"));
+    }
+    
+    @Test
+    public void passTestWrongNum() {
+        Assertions.assertFalse(DataChecker.passChecker("Horacio"));
+    }
+    
+    @Test
+    public void passTestWrongLower() {
+        Assertions.assertFalse(DataChecker.passChecker("HORACIO12"));
+    }
+    
+    @Test
+    public void passTestWrongUpper() {
+        Assertions.assertFalse(DataChecker.passChecker("horacio12"));
+    }
+    
+    @Test
+    public void passTestWrongLength() {
+        Assertions.assertFalse(DataChecker.passChecker("Ab2"));
+    }
 }
