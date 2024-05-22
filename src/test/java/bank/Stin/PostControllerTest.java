@@ -4,6 +4,7 @@
  */
 package bank.Stin;
 
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqPostCorrect() {
+    public void ApiReqPostCorrect() throws URISyntaxException {
         Map<String, String> formData = new HashMap<>();
         formData.put("lat","50.23");
         formData.put("lon","50.23");
@@ -65,14 +66,14 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqGetCorrect() {
+    public void ApiReqGetCorrect() throws URISyntaxException {
         
         String result = PostController.getFullForecast("test");
         Assertions.assertNotNull(result);
     }
     
     @Test
-    public void ApiReqHistPostCorrect() {
+    public void ApiReqHistPostCorrect() throws URISyntaxException {
         Map<String, String> formData = new HashMap<>();
         formData.put("lat","50.23");
         formData.put("lon","50.23");
@@ -83,7 +84,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqHistGetCorrect() {
+    public void ApiReqHistGetCorrect() throws URISyntaxException {
         
         String result = PostController.getFullHistory("test");
         Assertions.assertNotNull(result);
@@ -152,7 +153,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void submitPlaceCorrect() {
+    public void submitPlaceCorrect() throws URISyntaxException {
         Map<String, String> formData = new HashMap<>();
         formData.put("user", "test");
         formData.put("lat","50.23");
@@ -165,7 +166,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void loadPlaceCorrect() {
+    public void loadPlaceCorrect() throws URISyntaxException {
         Map<String, String> formData = new HashMap<>();
         formData.put("user", "test");        
 

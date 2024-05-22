@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
+import org.springframework.core.io.ResourceLoader;
 
 
 class Account {    
@@ -31,7 +34,7 @@ class Account {
         return null;
     }
     
-    public static int register(File f, String n, String p, long c) {
+    public static int register(File f, String n, String p, long c) throws URISyntaxException {
         boolean nCheck=DataChecker.stringChecker(n);
         boolean pCheck=DataChecker.stringChecker(p) && DataChecker.passChecker(p);
         boolean cCheck=DataChecker.cardChecker(c);
@@ -47,7 +50,10 @@ class Account {
                 }
                 fw.close();
                 
-                File newFile = new File("src/main/resources/data/"+n+".txt");
+                String path = "data/"+n+".txt";
+                URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
+                
+                File newFile = new File(fileUrl.toURI());
                 newFile.createNewFile();
                 return 1;
             } catch (IOException e) {
