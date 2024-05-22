@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: bank.Stin.AccountTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.312 s -- in bank.Stin.AccountTest
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.328 s <<< FAILURE! -- in bank.Stin.AccountTest
+bank.Stin.AccountTest.registerTestCorrect -- Time elapsed: 0.046 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.net.URL.toURI()" because "fileUrl" is null
+	at bank.Stin.Account.register(Account.java:57)
+	at bank.Stin.AccountTest.registerTestCorrect(AccountTest.java:46)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

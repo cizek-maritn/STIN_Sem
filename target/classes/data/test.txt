@@ -4,4 +4,3 @@ somewhere;50.23;50.23
 somewhere;50.23;50.23
 somewhere;50.23;50.23
 somewhere;50.23;50.23
-somewhere;50.23;50.23

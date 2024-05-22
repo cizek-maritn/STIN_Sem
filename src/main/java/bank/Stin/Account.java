@@ -18,7 +18,7 @@ import org.springframework.core.io.ResourceLoader;
 class Account {    
 
     //returns file with the accounts favorite places
-    public static String login(File f, String n, String p) {
+    public static String login(File f, String n, String p) throws IOException {
         try {
             Scanner reader = new Scanner(f);
             while (reader.hasNextLine()) {
@@ -30,11 +30,12 @@ class Account {
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Couldn't find login info file.");
+            f.createNewFile();
         }
         return null;
     }
     
-    public static int register(File f, String n, String p, long c) throws URISyntaxException {
+    public static int register(File f, String n, String p, long c) throws URISyntaxException, IOException {
         boolean nCheck=DataChecker.stringChecker(n);
         boolean pCheck=DataChecker.stringChecker(p) && DataChecker.passChecker(p);
         boolean cCheck=DataChecker.cardChecker(c);
@@ -58,6 +59,7 @@ class Account {
                 return 1;
             } catch (IOException e) {
                 System.out.println("Couldn't find login info file.");
+                f.createNewFile();
             }
         } else {
             if (!nCheck) {

@@ -5,6 +5,7 @@
 package bank.Stin;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,7 @@ public class AccountTest {
     }
 
     @Test
-    public void loginTestCorrect() {
+    public void loginTestCorrect() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());
@@ -29,7 +30,7 @@ public class AccountTest {
     }
     
     @Test
-    public void loginTestWrong() {
+    public void loginTestWrong() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());
@@ -38,7 +39,7 @@ public class AccountTest {
     }
     
     @Test
-    public void registerTestCorrect() throws URISyntaxException {
+    public void registerTestCorrect() throws URISyntaxException, IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());
@@ -47,7 +48,7 @@ public class AccountTest {
     }
     
     @Test
-    public void registerTestWrongName() throws URISyntaxException {
+    public void registerTestWrongName() throws URISyntaxException, IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());
@@ -56,7 +57,7 @@ public class AccountTest {
     }
     
     @Test
-    public void registerTestWrongPass() throws URISyntaxException {
+    public void registerTestWrongPass() throws URISyntaxException, IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());
@@ -65,7 +66,7 @@ public class AccountTest {
     }
     
     @Test
-    public void registerTestWrongCard() throws URISyntaxException {
+    public void registerTestWrongCard() throws URISyntaxException, IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("data/login.txt");
         File login = new File (resource.getFile());

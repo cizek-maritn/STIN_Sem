@@ -141,12 +141,7 @@ public class PostController {
         
         System.out.println("URL: "+fileUrl);
         System.out.println("URI: "+fileUrl.toURI());
-        System.out.println("JarURL: "+jarConnect.toString());
-        
-        String dir = System.getProperty("user.dir");
-        System.out.println("working dir: "+dir);
-        
-        
+        System.out.println("JarURL: "+jarConnect.toString());  
         
         File f = new File(jarConnect.toString());
         String s = Account.login(f, name, pwd);
@@ -161,10 +156,16 @@ public class PostController {
     }
     
     @PostMapping("/submitRegister")
-    public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException {
+    public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException, IOException {
         String path = "data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
+        
+        System.out.println("URL: "+fileUrl);
+        System.out.println("URI: "+fileUrl.toURI());
+        System.out.println("JarURL: "+jarConnect.toString());  
+        
+        File f = new File(jarConnect.toString());
         int s = Account.register(f, name, pwd, card);
         if (s==1) {
             ra.addAttribute("name", name);
