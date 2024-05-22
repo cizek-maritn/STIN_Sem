@@ -146,7 +146,9 @@ public class PostController {
         String dir = System.getProperty("user.dir");
         System.out.println("working dir: "+dir);
         
-        File f = new File(jarConnect.toString());
+        
+        
+        File f = new File("data/login.txt");
         String s = Account.login(f, name, pwd);
         if (s!=null) {
             ra.addAttribute("name", name);
