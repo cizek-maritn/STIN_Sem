@@ -53,18 +53,76 @@ import org.json.*;
                 
 <span class="fc" id="L54">            } catch (JSONException e) {</span>
 <span class="fc" id="L55">                System.out.println(&quot;Missing hourly field.&quot;);</span>
-<span class="fc" id="L56">                return new int[] {-1};</span>
+<span class="fc" id="L56">                System.out.println(e);</span>
+<span class="fc" id="L57">                return new int[] {-1};</span>
             }
             
 
-<span class="nc" id="L60">        } catch (IOException | InterruptedException e) {</span>
-<span class="nc" id="L61">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
+<span class="nc" id="L61">        } catch (IOException | InterruptedException e) {</span>
+<span class="nc" id="L62">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
         }
-<span class="nc" id="L63">        return new int[] {-1};</span>
+<span class="nc" id="L64">        return new int[] {-1};</span>
+    }
+    
+    public static int[] callApiHistoric(String lat, String lon, String date) {
+<span class="fc" id="L68">        String apiCall=CallBuilderHistoric(lat,lon,date);</span>
+<span class="fc" id="L69">        String[] command = {</span>
+            &quot;curl&quot;,
+            &quot;-X&quot;, &quot;GET&quot;,
+            apiCall, &quot;--ssl-no-revoke&quot;
+        };
+<span class="fc" id="L74">        ProcessBuilder processBuilder = new ProcessBuilder(command);</span>
+        
+        try {
+<span class="fc" id="L77">            Process process = processBuilder.start();</span>
+
+<span class="fc" id="L79">            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));</span>
+<span class="fc" id="L80">            StringBuilder output = new StringBuilder();</span>
+            String line;
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L83">                output.append(line).append(&quot;\n&quot;);</span>
+            }
+            
+<span class="fc" id="L86">            JSONObject obj = new JSONObject(output.toString());</span>
+<span class="fc" id="L87">            System.out.println(obj);</span>
+            
+            try {
+<span class="fc" id="L90">                JSONObject hourly = obj.getJSONObject(&quot;hourly&quot;);</span>
+<span class="fc" id="L91">                JSONArray wcArr = hourly.getJSONArray(&quot;weather_code&quot;);</span>
+                //System.out.println(wcArr);
+                
+<span class="fc" id="L94">                int exitCode = process.waitFor();</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">                if (exitCode == 0) {</span>
+<span class="fc" id="L96">                    int[] wcodes = new int[5];</span>
+<span class="fc" id="L97">                    wcodes[4]=wcArr.getInt(23);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">                    for (int i=0;i&lt;4;i++) {</span>
+<span class="fc" id="L99">                        wcodes[i]=wcArr.getInt(((i*6)));</span>
+                    }
+<span class="fc" id="L101">                    return wcodes;</span>
+                } else {
+<span class="nc" id="L103">                    System.err.println(&quot;Curl command failed with exit code &quot; + exitCode);</span>
+<span class="nc" id="L104">                    return new int[] {-1};</span>
+                }
+                
+<span class="fc" id="L107">            } catch (JSONException e) {</span>
+<span class="fc" id="L108">                System.out.println(&quot;Missing hourly field.&quot;);</span>
+<span class="fc" id="L109">                System.out.println(e);</span>
+<span class="fc" id="L110">                return new int[] {-1};</span>
+            }
+            
+
+<span class="nc" id="L114">        } catch (IOException | InterruptedException e) {</span>
+<span class="nc" id="L115">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
+        }
+<span class="nc" id="L117">        return new int[] {-1};</span>
     }
     
     private static String CallBuilder(String lat, String lon, String days) {
-<span class="fc" id="L67">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
+<span class="fc" id="L121">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
+    }
+    
+    private static String CallBuilderHistoric(String lat, String lon, String date) {
+<span class="fc" id="L125">        return &quot;https://archive-api.open-meteo.com/v1/archive?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;start_date=&quot;+date+&quot;&amp;end_date=&quot;+date+&quot;&amp;hourly=weather_code&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

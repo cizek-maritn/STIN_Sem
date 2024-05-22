@@ -71,3 +71,57 @@ function PostData(lat,lon,days) {
         responseDiv.textContent = "An error occurred.";
     });
 }
+
+function histData(lat,lon,date) {
+    data = {
+        lat: lat,
+        lon: lon,
+        dat: date
+    }
+    fetch('/submitHist', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text()) // Use response.text() to handle raw response
+    .then(data => {
+        data=JSON.parse(data);
+        console.log("Success:", data);
+        // Display the response on the page
+        for (let i=0;i<data.length;i++) {
+            var divName = "wicon" + i;
+            const imgDiv = document.getElementById(divName);
+            //should be shot dead for this
+            if (data[i]==0) {
+                imgDiv.src = "imgs/weather0.png";
+            }
+            else if (data[i]<3) {
+                imgDiv.src = "imgs/weather1.png";
+            }
+            else if (data[i]<50) {
+                imgDiv.src = "imgs/weather2.png";
+            }
+            else if (data[i]<60) {
+                imgDiv.src = "imgs/weather3.png";
+            }
+            else if (data[i]<70) {
+                imgDiv.src = "imgs/weather4.png";
+            }
+            else if (data[i]<80) {
+                imgDiv.src = "imgs/weather5.png";
+            }
+            else if (data[i]<90) {
+                imgDiv.src = "imgs/weather3.png";
+            }
+            else {
+                imgDiv.src = "imgs/weather6.png";
+            }
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Nastala chyba.")
+    });
+}

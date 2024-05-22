@@ -31,4 +31,19 @@ public class ApiCallerTest {
         int[] arr2 = ApiCaller.CallApiCurrent("91.2","15.3","1");
         Assertions.assertArrayEquals(arr1,arr2);
     }
+    
+    @Test
+    public void HistApiCallCorrect() {
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.callApiHistoric("50.46","15.3","2024-05-15");
+        Assertions.assertFalse(Arrays.equals(arr1,arr2));
+        
+    }
+
+    @Test
+    public void HistoricApiCallWrong() {
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.callApiHistoric("91.2","15.3","2024-05-15");
+        Assertions.assertArrayEquals(arr1,arr2);
+    }
 }

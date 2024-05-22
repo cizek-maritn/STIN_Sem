@@ -12,7 +12,8 @@
 <body>
     <header>
         <h1>STIN</h1>
-        <nav id="logout">
+        <nav>
+            <button class="btn sign" id="button"><a id="changelink" href="history.html">Historická data</a></button>
             <button class="btn reg"><a href="index.html">Odhlásit</a></button>
         </nav>
     </header>
@@ -144,6 +145,10 @@
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const name = urlParams.get("name");
+
+        const linkDiv = document.getElementById("changelink");
+        linkDiv.setAttribute("href", "history.html?name="+name);
+
         const selector = document.getElementById("places");
         var data = {
             user: name

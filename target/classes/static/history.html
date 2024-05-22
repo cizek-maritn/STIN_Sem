@@ -13,27 +13,23 @@
     <header>
         <h1>STIN</h1>
         <nav>
-            <button class="btn sign" id="button"><a id="changelink" href="history.html">Historická data</a></button>
+            <button class="btn sign"><a id="changelink" href="forecast.html">Předpověď</a></button>
             <button class="btn reg"><a href="index.html">Odhlásit</a></button>
         </nav>
     </header>
-    <section id="graphicPaid">
+    <section id="graphicHistory">
         <img src="imgs/img0.gif" id="wicon0">
         <img src="imgs/img0.gif" id="wicon1">
         <img src="imgs/img0.gif" id="wicon2">
         <img src="imgs/img0.gif" id="wicon3">
         <img src="imgs/img0.gif" id="wicon4">
-        <img src="imgs/img0.gif" id="wicon5">
-        <img src="imgs/img0.gif" id="wicon6">
     </section>
-    <section id="wsecPaid">
-        <p id="w0">Loading...</p>
-        <p id="w1">Loading...</p>
-        <p id="w2">Loading...</p>
-        <p id="w3">Loading...</p>
-        <p id="w4">Loading...</p>
-        <p id="w5">Loading...</p>
-        <p id="w6">Loading...</p>
+    <section id="wsecHistory">
+        <p id="w0">0:00</p>
+        <p id="w1">6:00</p>
+        <p id="w2">12:00</p>
+        <p id="w3">18:00</p>
+        <p id="w4">23:59</p>
     </section>
     <main id="paidMain">
         <form id="form1">
@@ -45,6 +41,11 @@
             <label for="newPlace">Jméno:</label>
             <input type="text" id="newPlace" name="newPlace"><br><br>
             <input type="submit" value="Potvrdit">
+        </form>
+        <form id="form3">
+            <p>Výběr data</p>
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum">
         </form>
     </main>
     <div id="map"></div>
@@ -59,6 +60,7 @@
         }).addTo(map);
 
         var lastMarker; // Variable to keep track of the last marker
+        const dateDiv = document.getElementById("datum");
 
         // Add a marker when the map is clicked
         map.on('click', function(e) {
@@ -74,7 +76,7 @@
             lastMarker = L.marker([lat, lng]).addTo(map);
             console.log(lastMarker);
 
-            PostData(lat,lng,7);
+            histData(lat,lng,dateDiv.value);
 
             // Optional: bind a popup to the marker displaying the coordinates
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
@@ -84,6 +86,7 @@
             const valArr = this.value.split(" ");
             var lat = valArr[1];
             var lng = valArr[2];
+            const dateDiv = document.getElementById("datum");
 
             if (lastMarker) {
                 map.removeLayer(lastMarker);
@@ -92,7 +95,7 @@
             lastMarker = L.marker([lat, lng]).addTo(map);
             console.log(lastMarker);
 
-            PostData(lat,lng,7);
+            histData(lat,lng,dateDiv.value);
 
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
         });
@@ -131,6 +134,10 @@
                     console.error('Error:', error);
                 });
             }
+
+            document.getElementById("form3").onsubmit = function(event) {
+                event.preventDefault();
+            }
         };
     </script>
     <footer>
@@ -141,13 +148,13 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        PostData("50.46", "15.3", "7");
+        histData("50.46", "15.3", "2024-05-15");
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const name = urlParams.get("name");
 
         const linkDiv = document.getElementById("changelink");
-        linkDiv.setAttribute("href", "history.html?name="+name);
+        linkDiv.setAttribute("href", "forecast.html?name="+name);
 
         const selector = document.getElementById("places");
         var data = {

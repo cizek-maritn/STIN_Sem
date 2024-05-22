@@ -55,6 +55,30 @@ public class PostControllerTest {
     }
     
     @Test
+    public void PostControllerHistCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        formData.put("dat","2024-05-15");
+        
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCallHist(formData);
+        Assertions.assertFalse(Arrays.equals(arr1,result));
+    }
+    
+    @Test
+    public void PostControllerHistWrong() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","91.23");
+        formData.put("lon","50.23");
+        formData.put("dat","2024-05-15");
+        
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCallHist(formData);
+        Assertions.assertArrayEquals(arr1,result);
+    }
+    
+    @Test
     public void LoginHandleCorrect() throws Exception {
         mvc.perform(post("/submitLogin")
                 .param("name", "test")
@@ -91,4 +115,28 @@ public class PostControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("register.html?info=3"));
     }
+    
+    @Test
+    public void submitPlaceCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("user", "test");
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        formData.put("placeName","somewhere");
+        
+
+        int result = PostController.handleNewPlace(formData);
+        Assertions.assertEquals(1,result);
+    }
+    
+    @Test
+    public void loadPlaceCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("user", "test");        
+
+        String[] result = PostController.handlePlaceLoad(formData);
+        Assertions.assertNotNull(result);
+    }
+    
+    
 }

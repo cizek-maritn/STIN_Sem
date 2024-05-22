@@ -35,6 +35,18 @@ public class PostController {
         return responseCode;
     }
     
+    @PostMapping("/submitHist")
+    public static int[] handleApiCallHist(@RequestBody Map<String, String> formData) {
+        // Process the data (e.g., save to database)
+        String lat = formData.get("lat");
+        String lon = formData.get("lon");
+        String date = formData.get("dat");
+        
+        // Prepare response data
+        int[] responseCode = ApiCaller.callApiHistoric(lat, lon, date);
+        return responseCode;
+    }
+    
     @PostMapping("/submitLogin")
     public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) {
         File f = new File("src/main/resources/data/login.txt");
