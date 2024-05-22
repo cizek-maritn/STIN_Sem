@@ -38,19 +38,12 @@ public class ApiCaller {
                 JSONArray wcArr = hourly.getJSONArray("weather_code");
                 //System.out.println(wcArr);
                 
-                int exitCode = process.waitFor();
-                if (exitCode == 0) {
-                    int ct = LocalTime.now().getHour();
-                    int[] wcodes = new int[Integer.parseInt(days)];
-                    for (int i=0;i<Integer.parseInt(days);i++) {
-                        wcodes[i]=wcArr.getInt(ct+(i*24));
-                    }
-                    return wcodes;
-                } else {
-                    System.err.println("Curl command failed with exit code " + exitCode);
-                    return new int[] {-1};
+                int ct = LocalTime.now().getHour();
+                int[] wcodes = new int[Integer.parseInt(days)];
+                for (int i=0;i<Integer.parseInt(days);i++) {
+                    wcodes[i]=wcArr.getInt(ct+(i*24));
                 }
-                
+                return wcodes;                
             } catch (JSONException e) {
                 System.out.println("Missing hourly field.");
                 System.out.println(e);
@@ -58,7 +51,7 @@ public class ApiCaller {
             }
             
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             System.out.println("Something completely went wrong: "+e);
         }
         return new int[] {-1};
@@ -90,20 +83,13 @@ public class ApiCaller {
                 JSONObject hourly = obj.getJSONObject("hourly");
                 JSONArray wcArr = hourly.getJSONArray("weather_code");
                 //System.out.println(wcArr);
-                
-                int exitCode = process.waitFor();
-                if (exitCode == 0) {
-                    int[] wcodes = new int[5];
-                    wcodes[4]=wcArr.getInt(23);
-                    for (int i=0;i<4;i++) {
-                        wcodes[i]=wcArr.getInt(((i*6)));
-                    }
-                    return wcodes;
-                } else {
-                    System.err.println("Curl command failed with exit code " + exitCode);
-                    return new int[] {-1};
+
+                int[] wcodes = new int[5];
+                wcodes[4]=wcArr.getInt(23);
+                for (int i=0;i<4;i++) {
+                    wcodes[i]=wcArr.getInt(((i*6)));
                 }
-                
+                return wcodes;          
             } catch (JSONException e) {
                 System.out.println("Missing hourly field.");
                 System.out.println(e);
@@ -111,7 +97,7 @@ public class ApiCaller {
             }
             
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             System.out.println("Something completely went wrong: "+e);
         }
         return new int[] {-1};
