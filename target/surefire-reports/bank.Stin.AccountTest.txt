@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: bank.Stin.AccountTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.577 s -- in bank.Stin.AccountTest
