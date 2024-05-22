@@ -136,6 +136,8 @@ public class PostController {
     public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException {
         String path = "data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
+        System.out.println("URL: "+fileUrl);
+        System.out.println("URI: "+fileUrl.toURI());
         File f = new File(fileUrl.toURI());
         String s = Account.login(f, name, pwd);
         if (s!=null) {
