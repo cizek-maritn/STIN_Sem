@@ -148,7 +148,7 @@ public class PostController {
         
         
         
-        File f = new File(fileUrl.toURI());
+        File f = new File(jarConnect.toString());
         String s = Account.login(f, name, pwd);
         if (s!=null) {
             ra.addAttribute("name", name);
