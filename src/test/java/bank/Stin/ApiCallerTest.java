@@ -4,13 +4,9 @@
  */
 package bank.Stin;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -23,11 +19,31 @@ public class ApiCallerTest {
     
     @Test
     public void CurrentApiCallCorrect() {
-        Assertions.assertNotEquals(-1,ApiCaller.CallApiCurrent("50.46","15.3","1"));
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.CallApiCurrent("50.46","15.3","1");
+        Assertions.assertFalse(Arrays.equals(arr1,arr2));
+        
     }
 
     @Test
     public void CurrentApiCallWrong() {
-        Assertions.assertEquals(-1, ApiCaller.CallApiCurrent("91.2", "15.3", "1"));
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.CallApiCurrent("91.2","15.3","1");
+        Assertions.assertArrayEquals(arr1,arr2);
+    }
+    
+    @Test
+    public void HistApiCallCorrect() {
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.callApiHistoric("50.46","15.3","2024-05-15");
+        Assertions.assertFalse(Arrays.equals(arr1,arr2));
+        
+    }
+
+    @Test
+    public void HistoricApiCallWrong() {
+        int[] arr1 = new int[] {-1};
+        int[] arr2 = ApiCaller.callApiHistoric("91.2","15.3","2024-05-15");
+        Assertions.assertArrayEquals(arr1,arr2);
     }
 }

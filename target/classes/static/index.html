@@ -14,15 +14,15 @@
         <h1>STIN</h1>
         <nav>
             <button class="btn sign"><a href="login.html">Přihlásit se</a></button>
-            <button class="btn reg">Zaregistrovat</button>
+            <button class="btn reg"><a href="register.html">Zaregistrovat</a></button>
         </nav>
     </header>
     <main>
         <section id="graphic">
-            <img src="imgs/img0.gif" id="wicon">
+            <img src="imgs/img0.gif" id="wicon0">
         </section>
         <section id="wsec">
-            <p id="written">Loading...</p>
+            <p id="w0">Loading...</p>
         </section>
     </main>
     <div id="map"></div>
@@ -62,3 +62,9 @@
     </footer>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        PostData("50.46", "15.3", "1");
+    });
+</script>

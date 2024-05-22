@@ -4,17 +4,12 @@
  */
 package bank.Stin;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -42,8 +37,9 @@ public class PostControllerTest {
         formData.put("lon","50.23");
         formData.put("days","1");
         
-        int result = PostController.handleApiCall(formData);
-        Assertions.assertNotEquals(-1, result);
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCall(formData);
+        Assertions.assertFalse(Arrays.equals(arr1,result));
     }
     
     @Test
@@ -53,8 +49,33 @@ public class PostControllerTest {
         formData.put("lon","50.23");
         formData.put("days","1");
         
-        int result = PostController.handleApiCall(formData);
-        Assertions.assertEquals(-1, result);
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCall(formData);
+        Assertions.assertArrayEquals(arr1,result);
+    }
+    
+    @Test
+    public void PostControllerHistCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        formData.put("dat","2024-05-15");
+        
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCallHist(formData);
+        Assertions.assertFalse(Arrays.equals(arr1,result));
+    }
+    
+    @Test
+    public void PostControllerHistWrong() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","91.23");
+        formData.put("lon","50.23");
+        formData.put("dat","2024-05-15");
+        
+        int[] arr1 = new int[] {-1};
+        int[] result = PostController.handleApiCallHist(formData);
+        Assertions.assertArrayEquals(arr1,result);
     }
     
     @Test
@@ -63,7 +84,7 @@ public class PostControllerTest {
                 .param("name", "test")
                 .param("pwd", "test"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("success.html?name=test"));
+                .andExpect(redirectedUrl("forecast.html?name=test"));
     }
     
     @Test
@@ -82,7 +103,7 @@ public class PostControllerTest {
                 .param("pwd", "Abcdef12G")
                 .param("card", "1234567890123456"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("success.html?name=alfons"));
+                .andExpect(redirectedUrl("forecast.html?name=alfons"));
     }
     
     @Test
@@ -94,4 +115,28 @@ public class PostControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("register.html?info=3"));
     }
+    
+    @Test
+    public void submitPlaceCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("user", "test");
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        formData.put("placeName","somewhere");
+        
+
+        int result = PostController.handleNewPlace(formData);
+        Assertions.assertEquals(1,result);
+    }
+    
+    @Test
+    public void loadPlaceCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("user", "test");        
+
+        String[] result = PostController.handlePlaceLoad(formData);
+        Assertions.assertNotNull(result);
+    }
+    
+    
 }

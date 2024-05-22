@@ -4,58 +4,119 @@
  */
 package bank.Stin;
 
+import java.io.BufferedWriter;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-<span class="fc" id="L19">public class PostController {</span>
+<span class="fc" id="L24">public class PostController {</span>
     
     @PostMapping(&quot;/submit&quot;)
-    public static int handleApiCall(@RequestBody Map&lt;String, String&gt; formData) {
+    public static int[] handleApiCall(@RequestBody Map&lt;String, String&gt; formData) {
         // Process the data (e.g., save to database)
-<span class="fc" id="L24">        String lat = formData.get(&quot;lat&quot;);</span>
-<span class="fc" id="L25">        String lon = formData.get(&quot;lon&quot;);</span>
-<span class="fc" id="L26">        String day = formData.get(&quot;days&quot;);</span>
+<span class="fc" id="L29">        String lat = formData.get(&quot;lat&quot;);</span>
+<span class="fc" id="L30">        String lon = formData.get(&quot;lon&quot;);</span>
+<span class="fc" id="L31">        String day = formData.get(&quot;days&quot;);</span>
         
         // Prepare response data
-<span class="fc" id="L29">        int responseCode = ApiCaller.CallApiCurrent(lat, lon, day);</span>
-<span class="fc" id="L30">        return responseCode;</span>
+<span class="fc" id="L34">        int[] responseCode = ApiCaller.CallApiCurrent(lat, lon, day);</span>
+<span class="fc" id="L35">        return responseCode;</span>
+    }
+    
+    @PostMapping(&quot;/submitHist&quot;)
+    public static int[] handleApiCallHist(@RequestBody Map&lt;String, String&gt; formData) {
+        // Process the data (e.g., save to database)
+<span class="fc" id="L41">        String lat = formData.get(&quot;lat&quot;);</span>
+<span class="fc" id="L42">        String lon = formData.get(&quot;lon&quot;);</span>
+<span class="fc" id="L43">        String date = formData.get(&quot;dat&quot;);</span>
+        
+        // Prepare response data
+<span class="fc" id="L46">        int[] responseCode = ApiCaller.callApiHistoric(lat, lon, date);</span>
+<span class="fc" id="L47">        return responseCode;</span>
     }
     
     @PostMapping(&quot;/submitLogin&quot;)
     public static RedirectView handleLoginAttempt(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;pwd&quot;) String pwd, RedirectAttributes ra) {
-<span class="fc" id="L35">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
-<span class="fc" id="L36">        String s = Account.login(f, name, pwd);</span>
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (s!=null) {</span>
-<span class="fc" id="L38">            ra.addAttribute(&quot;name&quot;, name);</span>
+<span class="fc" id="L52">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
+<span class="fc" id="L53">        String s = Account.login(f, name, pwd);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (s!=null) {</span>
+<span class="fc" id="L55">            ra.addAttribute(&quot;name&quot;, name);</span>
             //System.out.println(ra);
-<span class="fc" id="L40">            return new RedirectView(&quot;success.html&quot;);</span>
+<span class="fc" id="L57">            return new RedirectView(&quot;forecast.html&quot;);</span>
         } else {
-<span class="fc" id="L42">            ra.addAttribute(&quot;info&quot;, 1);</span>
-<span class="fc" id="L43">            return new RedirectView(&quot;login.html&quot;);</span>
+<span class="fc" id="L59">            ra.addAttribute(&quot;info&quot;, 1);</span>
+<span class="fc" id="L60">            return new RedirectView(&quot;login.html&quot;);</span>
         }
     }
     
     @PostMapping(&quot;/submitRegister&quot;)
     public static RedirectView handleRegisterAttempt(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;pwd&quot;) String pwd, @RequestParam(&quot;card&quot;) long card, RedirectAttributes ra) {
-<span class="fc" id="L49">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
-<span class="fc" id="L50">        int s = Account.register(f, name, pwd, card);</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (s==1) {</span>
-<span class="fc" id="L52">            ra.addAttribute(&quot;name&quot;, name);</span>
+<span class="fc" id="L66">        File f = new File(&quot;src/main/resources/data/login.txt&quot;);</span>
+<span class="fc" id="L67">        int s = Account.register(f, name, pwd, card);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (s==1) {</span>
+<span class="fc" id="L69">            ra.addAttribute(&quot;name&quot;, name);</span>
             //System.out.println(ra);
-<span class="fc" id="L54">            return new RedirectView(&quot;success.html&quot;);</span>
+<span class="fc" id="L71">            return new RedirectView(&quot;forecast.html&quot;);</span>
         } else {
-<span class="fc" id="L56">            ra.addAttribute(&quot;info&quot;, s);</span>
-<span class="fc" id="L57">            return new RedirectView(&quot;register.html&quot;);</span>
+<span class="fc" id="L73">            ra.addAttribute(&quot;info&quot;, s);</span>
+<span class="fc" id="L74">            return new RedirectView(&quot;register.html&quot;);</span>
         }
+    }
+    
+    @PostMapping(&quot;/submitPlace&quot;)
+    public static int handleNewPlace(@RequestBody Map&lt;String, String&gt; formData) {
+<span class="fc" id="L80">        String user = formData.get(&quot;user&quot;);</span>
+<span class="fc" id="L81">        String n = formData.get(&quot;placeName&quot;);</span>
+<span class="fc" id="L82">        String lat = formData.get(&quot;lat&quot;);</span>
+<span class="fc" id="L83">        String lon = formData.get(&quot;lon&quot;);</span>
+<span class="fc" id="L84">        File f = new File(&quot;src/main/resources/data/&quot;+user+&quot;.txt&quot;);</span>
+        try {
+<span class="fc" id="L86">            FileWriter fw = new FileWriter(f, true);</span>
+<span class="fc" id="L87">            try (BufferedWriter bw = new BufferedWriter(fw)) {</span>
+<span class="fc" id="L88">                bw.write(n+&quot;;&quot;+lat+&quot;;&quot;+lon);</span>
+<span class="fc" id="L89">                    bw.newLine();</span>
+<span class="fc" id="L90">                    bw.close();</span>
+            }
+<span class="fc" id="L92">            fw.close();</span>
+<span class="fc" id="L93">            return 1;</span>
+<span class="nc" id="L94">        } catch (IOException e) {</span>
+<span class="nc" id="L95">            System.out.println(&quot;Couldn't find favorite info file.&quot;);</span>
+        }
+<span class="nc" id="L97">        return 0;</span>
+    }
+    
+    @PostMapping(&quot;/loadPlaces&quot;)
+    public static String[] handlePlaceLoad(@RequestBody Map&lt;String, String&gt; formData) {
+<span class="fc" id="L102">        String user = formData.get(&quot;user&quot;);</span>
+        //System.out.println(&quot;pog&quot;);
+<span class="fc" id="L104">        File f = new File(&quot;src/main/resources/data/&quot;+user+&quot;.txt&quot;);</span>
+<span class="fc" id="L105">        List&lt;String&gt; lines=new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L107">            Scanner reader = new Scanner(f);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">            while (reader.hasNextLine()) {</span>
+<span class="fc" id="L109">                String line = reader.nextLine();</span>
+<span class="fc" id="L110">                lines.add(line);</span>
+<span class="fc" id="L111">            }</span>
+<span class="fc" id="L112">            reader.close();</span>
+<span class="fc" id="L113">            String[] output = new String[lines.size()];</span>
+<span class="fc" id="L114">            output=lines.toArray(output);</span>
+<span class="fc" id="L115">            return output;</span>
+<span class="nc" id="L116">        } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L117">            System.out.println(&quot;Couldnt find favorite place file&quot;);</span>
+        }
+<span class="nc" id="L119">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

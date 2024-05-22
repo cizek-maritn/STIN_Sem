@@ -1,4 +1,2 @@
 test;test;0
 bonifac;3rtupAs56;1234567890123456
-
-alfons;Abcdef12G;1234567890123456
