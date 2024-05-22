@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.JarURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -133,12 +134,14 @@ public class PostController {
     }
     
     @PostMapping("/submitLogin")
-    public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException {
+    public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException, IOException {
         String path = "data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
+        JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
         System.out.println("URL: "+fileUrl);
         System.out.println("URI: "+fileUrl.toURI());
-        File f = new File(fileUrl.toURI());
+        System.out.println("JarURL: "+jarConnect.toString());
+        File f = new File(jarConnect.toString());
         String s = Account.login(f, name, pwd);
         if (s!=null) {
             ra.addAttribute("name", name);
