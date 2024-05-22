@@ -55,6 +55,41 @@ public class PostControllerTest {
     }
     
     @Test
+    public void ApiReqPostCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        
+        String result = PostController.handleApiFullCall(formData);
+        Assertions.assertNotNull(result);
+    }
+    
+    @Test
+    public void ApiReqGetCorrect() {
+        
+        String result = PostController.getFullForecast("test");
+        Assertions.assertNotNull(result);
+    }
+    
+    @Test
+    public void ApiReqHistPostCorrect() {
+        Map<String, String> formData = new HashMap<>();
+        formData.put("lat","50.23");
+        formData.put("lon","50.23");
+        formData.put("dat", "2024-05-15");
+        
+        String result = PostController.handleApiFullHistCall(formData);
+        Assertions.assertNotNull(result);
+    }
+    
+    @Test
+    public void ApiReqHistGetCorrect() {
+        
+        String result = PostController.getFullHistory("test");
+        Assertions.assertNotNull(result);
+    }
+    
+    @Test
     public void PostControllerHistCorrect() {
         Map<String, String> formData = new HashMap<>();
         formData.put("lat","50.23");

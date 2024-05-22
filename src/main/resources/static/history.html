@@ -13,6 +13,7 @@
     <header>
         <h1>STIN</h1>
         <nav>
+            <button class="btn sign" id="restBtn2">Získat celá data.</button>
             <button class="btn sign"><a id="changelink" href="forecast.html">Předpověď</a></button>
             <button class="btn reg"><a href="index.html">Odhlásit</a></button>
         </nav>
@@ -100,6 +101,35 @@
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
         });
 
+        document.getElementById("restBtn2").addEventListener("click", function() {
+                console.log("aaa");
+            if (!lastMarker) {
+                alert("vyberte místo");
+            } else {
+                var data = {
+                    lat: lastMarker._latlng.lat.toString(),
+                    lon: lastMarker._latlng.lng.toString(),
+                    dat: dateDiv.value
+                };
+
+                fetch('/api/hist', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(responseText => {
+                    console.log(responseText);
+                    window.location.href = "/api/hist";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+
         document.getElementById("form2").onsubmit = function(event) {
             event.preventDefault();
             var n = document.forms["form2"]["newPlace"].value;
@@ -134,6 +164,7 @@
                     console.error('Error:', error);
                 });
             }
+
 
             document.getElementById("form3").onsubmit = function(event) {
                 event.preventDefault();

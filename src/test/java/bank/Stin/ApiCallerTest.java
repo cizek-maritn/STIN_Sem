@@ -46,4 +46,16 @@ public class ApiCallerTest {
         int[] arr2 = ApiCaller.callApiHistoric("91.2","15.3","2024-05-15");
         Assertions.assertArrayEquals(arr1,arr2);
     }
+    
+    @Test
+    public void FullApiCallCorrect() {
+        String s = ApiCaller.CallApiFull("50.46","15.3");
+        Assertions.assertNotNull(s);   
+    }
+    
+    @Test
+    public void FullApiCallHistCorrect() {
+        String s = ApiCaller.CallApiFullHist("50.46","15.3", "2024-05-15");
+        Assertions.assertNotNull(s);   
+    }
 }
