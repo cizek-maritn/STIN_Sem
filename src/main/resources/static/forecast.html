@@ -37,7 +37,7 @@
     <main id="paidMain">
         <form id="form1">
             <label for="places">Oblíbená místa:</label>
-            <select name="places" id="cars"></select>
+            <select name="places" id="places"></select>
         </form>
         <form id="form2">
             <p>Nové oblíbené místo</p>
@@ -71,12 +71,66 @@
 
             // Create a new marker at the clicked location
             lastMarker = L.marker([lat, lng]).addTo(map);
+            console.log(lastMarker);
 
-            PostData(lat,lng,1);
+            PostData(lat,lng,7);
 
             // Optional: bind a popup to the marker displaying the coordinates
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
         });
+
+        document.getElementById("places").addEventListener("change", function() {
+            const valArr = this.value.split(" ");
+            var lat = valArr[1];
+            var lng = valArr[2];
+
+            if (lastMarker) {
+                map.removeLayer(lastMarker);
+            }
+
+            lastMarker = L.marker([lat, lng]).addTo(map);
+            console.log(lastMarker);
+
+            PostData(lat,lng,7);
+
+            lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+        });
+
+        document.getElementById("form2").onsubmit = function(event) {
+            event.preventDefault();
+            var n = document.forms["form2"]["newPlace"].value;
+            if (n == null || n=="") {
+                alert("Není zadané jméno místa.")
+            } else if (!lastMarker) {
+                alert("vyberte místo")
+            } else {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const name = urlParams.get("name");
+                //console.log(name);
+                var data = {
+                    user: name,
+                    placeName: n,
+                    lat: lastMarker._latlng.lat.toString(),
+                    lon: lastMarker._latlng.lng.toString()
+                };
+
+                fetch('/submitPlace', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.text())
+                .then(responseText => {
+                    console.log(responseText);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        };
     </script>
     <footer>
         <p>Martin Čížek</p>
@@ -85,11 +139,36 @@
 </html>
 
 <script>
-    //const queryString = window.location.search;
-    //const urlParams = new URLSearchParams(queryString);
-    //const name = urlParams.get("name");
-    //document.getElementById("n").innerHTML=name;
     document.addEventListener("DOMContentLoaded", function() {
         PostData("50.46", "15.3", "7");
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const name = urlParams.get("name");
+        const selector = document.getElementById("places");
+        var data = {
+            user: name
+        };
+
+        fetch('/loadPlaces', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(data => {
+            data=JSON.parse(data);
+            for(let i=0;i<data.length;i++) {
+                const dataString = data[i].replaceAll(";", " ");
+                var opt = document.createElement("option");
+                opt.value=dataString;
+                opt.innerHTML=dataString;
+                selector.append(opt);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 </script>

@@ -4,14 +4,19 @@
  */
 package bank.Stin;
 
+import java.io.BufferedWriter;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -56,5 +61,49 @@ public class PostController {
             ra.addAttribute("info", s);
             return new RedirectView("register.html");
         }
+    }
+    
+    @PostMapping("/submitPlace")
+    public static int handleNewPlace(@RequestBody Map<String, String> formData) {
+        String user = formData.get("user");
+        String n = formData.get("placeName");
+        String lat = formData.get("lat");
+        String lon = formData.get("lon");
+        File f = new File("src/main/resources/data/"+user+".txt");
+        try {
+            FileWriter fw = new FileWriter(f, true);
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                bw.write(n+";"+lat+";"+lon);
+                    bw.newLine();
+                    bw.close();
+            }
+            fw.close();
+            return 1;
+        } catch (IOException e) {
+            System.out.println("Couldn't find favorite info file.");
+        }
+        return 0;
+    }
+    
+    @PostMapping("/loadPlaces")
+    public static String[] handlePlaceLoad(@RequestBody Map<String, String> formData) {
+        String user = formData.get("user");
+        //System.out.println("pog");
+        File f = new File("src/main/resources/data/"+user+".txt");
+        List<String> lines=new ArrayList<>();
+        try {
+            Scanner reader = new Scanner(f);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                lines.add(line);
+            }
+            reader.close();
+            String[] output = new String[lines.size()];
+            output=lines.toArray(output);
+            return output;
+        } catch (FileNotFoundException e) {
+            System.out.println("Couldnt find favorite place file");
+        }
+        return null;
     }
 }

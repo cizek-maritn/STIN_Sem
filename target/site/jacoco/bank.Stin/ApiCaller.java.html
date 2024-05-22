@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import org.json.*;
 
 <span class="nc" id="L13">public class ApiCaller {</span>
-    public static int CallApiCurrent(String lat, String lon, String days) {
+    public static int[] CallApiCurrent(String lat, String lon, String days) {
 <span class="fc" id="L15">        String apiCall=CallBuilder(lat,lon,days);</span>
 <span class="fc" id="L16">        String[] command = {</span>
             &quot;curl&quot;,
@@ -41,26 +41,30 @@ import org.json.*;
 <span class="fc" id="L41">                int exitCode = process.waitFor();</span>
 <span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (exitCode == 0) {</span>
 <span class="fc" id="L43">                    int ct = LocalTime.now().getHour();</span>
-<span class="fc" id="L44">                    return wcArr.getInt(ct);</span>
+<span class="fc" id="L44">                    int[] wcodes = new int[Integer.parseInt(days)];</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                    for (int i=0;i&lt;Integer.parseInt(days);i++) {</span>
+<span class="fc" id="L46">                        wcodes[i]=wcArr.getInt(ct+(i*24));</span>
+                    }
+<span class="fc" id="L48">                    return wcodes;</span>
                 } else {
-<span class="nc" id="L46">                    System.err.println(&quot;Curl command failed with exit code &quot; + exitCode);</span>
-<span class="nc" id="L47">                    return -1;</span>
+<span class="nc" id="L50">                    System.err.println(&quot;Curl command failed with exit code &quot; + exitCode);</span>
+<span class="nc" id="L51">                    return new int[] {-1};</span>
                 }
                 
-<span class="fc" id="L50">            } catch (JSONException e) {</span>
-<span class="fc" id="L51">                System.out.println(&quot;Missing hourly field.&quot;);</span>
-<span class="fc" id="L52">                return -1;</span>
+<span class="fc" id="L54">            } catch (JSONException e) {</span>
+<span class="fc" id="L55">                System.out.println(&quot;Missing hourly field.&quot;);</span>
+<span class="fc" id="L56">                return new int[] {-1};</span>
             }
             
 
-<span class="nc" id="L56">        } catch (IOException | InterruptedException e) {</span>
-<span class="nc" id="L57">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
+<span class="nc" id="L60">        } catch (IOException | InterruptedException e) {</span>
+<span class="nc" id="L61">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
         }
-<span class="nc" id="L59">        return -1;</span>
+<span class="nc" id="L63">        return new int[] {-1};</span>
     }
     
     private static String CallBuilder(String lat, String lon, String days) {
-<span class="fc" id="L63">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
+<span class="fc" id="L67">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
