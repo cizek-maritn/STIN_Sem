@@ -30,6 +30,7 @@ class Account {
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Couldn't find login info file.");
+            System.out.println(f);
             f.createNewFile();
         }
         return null;
@@ -59,6 +60,7 @@ class Account {
                 return 1;
             } catch (IOException e) {
                 System.out.println("Couldn't find login info file.");
+                System.out.println(f);
                 f.createNewFile();
             }
         } else {
