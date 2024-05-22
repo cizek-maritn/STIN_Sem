@@ -14,7 +14,7 @@ public class ApiCaller {
     public static int[] CallApiCurrent(String lat, String lon, String days) {
         String apiCall=CallBuilder(lat,lon,days);
         String[] command = {
-            "/bin/curl",
+            "curl",
             "-X", "GET",
             apiCall, "--ssl-no-revoke"
         };

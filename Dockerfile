@@ -3,6 +3,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
+RUN apt-get update && apt-get install -y curl
 COPY --from=build /target/Stin-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","demo.jar"]
