@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -33,6 +34,79 @@ public class PostController {
         // Prepare response data
         int[] responseCode = ApiCaller.CallApiCurrent(lat, lon, day);
         return responseCode;
+    }
+    
+    @PostMapping("/api/forecast")
+    public static String handleApiFullCall(@RequestBody Map<String, String> formData) {
+        // Process the data (e.g., save to database)
+        String lat = formData.get("lat");
+        String lon = formData.get("lon");
+        
+        // Prepare response data
+        String responseCode = ApiCaller.CallApiFull(lat, lon);
+        File f = new File("src/main/resources/data/temp.txt");
+        try {
+            FileWriter myWriter = new FileWriter(f);
+            myWriter.write(responseCode);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+        return getFullForecast(responseCode);
+    }
+
+    @GetMapping("/api/forecast")
+    public static String getFullForecast(String s) {
+        File f = new File("src/main/resources/data/temp.txt");
+        try {
+            Scanner reader = new Scanner(f);
+            String output="";
+            while (reader.hasNextLine()) {
+                output+=reader.nextLine();
+            }
+            reader.close();
+            return output;
+        } catch (FileNotFoundException e) {
+            System.out.println("Couldn't find login info file.");
+        }
+        return null;
+    }
+    
+    @PostMapping("/api/hist")
+    public static String handleApiFullHistCall(@RequestBody Map<String, String> formData) {
+        // Process the data (e.g., save to database)
+        String lat = formData.get("lat");
+        String lon = formData.get("lon");
+        String date = formData.get("dat");
+        
+        // Prepare response data
+        String responseCode = ApiCaller.CallApiFullHist(lat, lon, date);
+        File f = new File("src/main/resources/data/temp.txt");
+        try {
+            FileWriter myWriter = new FileWriter(f);
+            myWriter.write(responseCode);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+        return getFullHistory(responseCode);
+    }
+
+    @GetMapping("/api/hist")
+    public static String getFullHistory(String s) {
+        File f = new File("src/main/resources/data/temp.txt");
+        try {
+            Scanner reader = new Scanner(f);
+            String output="";
+            while (reader.hasNextLine()) {
+                output+=reader.nextLine();
+            }
+            reader.close();
+            return output;
+        } catch (FileNotFoundException e) {
+            System.out.println("Couldn't find login info file.");
+        }
+        return null;
     }
     
     @PostMapping("/submitHist")

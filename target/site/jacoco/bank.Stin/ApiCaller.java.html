@@ -117,12 +117,68 @@ import org.json.*;
 <span class="nc" id="L117">        return new int[] {-1};</span>
     }
     
+    public static String CallApiFull(String lat, String lon) {
+<span class="fc" id="L121">        String apiCall=CallBuilder(lat,lon,&quot;7&quot;);</span>
+<span class="fc" id="L122">        String[] command = {</span>
+            &quot;curl&quot;,
+            &quot;-X&quot;, &quot;GET&quot;,
+            apiCall, &quot;--ssl-no-revoke&quot;
+        };
+        //System.out.println(command[3]);
+<span class="fc" id="L128">        ProcessBuilder processBuilder = new ProcessBuilder(command);</span>
+        
+        try {
+<span class="fc" id="L131">            Process process = processBuilder.start();</span>
+
+<span class="fc" id="L133">            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));</span>
+<span class="fc" id="L134">            StringBuilder output = new StringBuilder();</span>
+            String line;
+<span class="fc bfc" id="L136" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L137">                output.append(line).append(&quot;\n&quot;);</span>
+            }
+            
+<span class="fc" id="L140">            return output.toString();</span>
+
+<span class="nc" id="L142">        } catch (IOException e) {</span>
+<span class="nc" id="L143">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
+        }
+<span class="nc" id="L145">        return null;</span>
+    } 
+    
+    public static String CallApiFullHist(String lat, String lon, String date) {
+<span class="fc" id="L149">        String apiCall=CallBuilderHistoric(lat,lon,date);</span>
+<span class="fc" id="L150">        String[] command = {</span>
+            &quot;curl&quot;,
+            &quot;-X&quot;, &quot;GET&quot;,
+            apiCall, &quot;--ssl-no-revoke&quot;
+        };
+        //System.out.println(command[3]);
+<span class="fc" id="L156">        ProcessBuilder processBuilder = new ProcessBuilder(command);</span>
+        
+        try {
+<span class="fc" id="L159">            Process process = processBuilder.start();</span>
+
+<span class="fc" id="L161">            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));</span>
+<span class="fc" id="L162">            StringBuilder output = new StringBuilder();</span>
+            String line;
+<span class="fc bfc" id="L164" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
+<span class="fc" id="L165">                output.append(line).append(&quot;\n&quot;);</span>
+            }
+            
+<span class="fc" id="L168">            return output.toString();</span>
+
+<span class="nc" id="L170">        } catch (IOException e) {</span>
+<span class="nc" id="L171">            System.out.println(&quot;Something completely went wrong: &quot;+e);</span>
+        }
+<span class="nc" id="L173">        return null;</span>
+    } 
+    
     private static String CallBuilder(String lat, String lon, String days) {
-<span class="fc" id="L121">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
+<span class="fc" id="L177">        return &quot;https://api.open-meteo.com/v1/forecast?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;hourly=weather_code&amp;forecast_days=&quot;+days;</span>
     }
     
     private static String CallBuilderHistoric(String lat, String lon, String date) {
-<span class="fc" id="L125">        return &quot;https://archive-api.open-meteo.com/v1/archive?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;start_date=&quot;+date+&quot;&amp;end_date=&quot;+date+&quot;&amp;hourly=weather_code&quot;;</span>
+<span class="fc" id="L181">        return &quot;https://archive-api.open-meteo.com/v1/archive?latitude=&quot;+lat+&quot;&amp;longitude=&quot;+lon+&quot;&amp;start_date=&quot;+date+&quot;&amp;end_date=&quot;+date+&quot;&amp;hourly=weather_code&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

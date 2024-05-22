@@ -13,6 +13,7 @@
     <header>
         <h1>STIN</h1>
         <nav>
+            <button class="btn sign" id="restBtn">Získat celá data.</button>
             <button class="btn sign" id="button"><a id="changelink" href="history.html">Historická data</a></button>
             <button class="btn reg"><a href="index.html">Odhlásit</a></button>
         </nav>
@@ -95,6 +96,33 @@
             PostData(lat,lng,7);
 
             lastMarker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+        });
+
+        document.getElementById("restBtn").addEventListener("click", function() {
+            if (!lastMarker) {
+                alert("vyberte místo");
+            } else {
+                var data = {
+                    lat: lastMarker._latlng.lat.toString(),
+                    lon: lastMarker._latlng.lng.toString()
+                };
+
+                fetch('/api/forecast', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(responseText => {
+                    console.log(responseText);
+                    window.location.href = "/api/forecast";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
         });
 
         document.getElementById("form2").onsubmit = function(event) {
