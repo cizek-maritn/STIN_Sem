@@ -135,7 +135,7 @@ public class PostController {
     
     @PostMapping("/submitLogin")
     public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException, IOException {
-        String path = "data/login.txt";
+        String path = "/data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
         JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
         
@@ -157,7 +157,7 @@ public class PostController {
     
     @PostMapping("/submitRegister")
     public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException, IOException {
-        String path = "data/login.txt";
+        String path = "/data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
         JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
         
