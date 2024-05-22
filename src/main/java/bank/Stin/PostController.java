@@ -138,9 +138,14 @@ public class PostController {
         String path = "data/login.txt";
         URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
         JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
+        
         System.out.println("URL: "+fileUrl);
         System.out.println("URI: "+fileUrl.toURI());
         System.out.println("JarURL: "+jarConnect.toString());
+        
+        String dir = System.getProperty("user.dir");
+        System.out.println("working dir: "+dir);
+        
         File f = new File(jarConnect.toString());
         String s = Account.login(f, name, pwd);
         if (s!=null) {
