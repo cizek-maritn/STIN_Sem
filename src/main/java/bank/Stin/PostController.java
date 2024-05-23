@@ -4,6 +4,7 @@
  */
 package bank.Stin;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.JarURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -42,7 +47,7 @@ public class PostController {
     }
     
     @PostMapping("/api/forecast")
-    public static String handleApiFullCall(@RequestBody Map<String, String> formData) throws URISyntaxException {
+    public static String handleApiFullCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException {
         // Process the data (e.g., save to database)
         String lat = formData.get("lat");
         String lon = formData.get("lon");
@@ -50,12 +55,11 @@ public class PostController {
         // Prepare response data
         String responseCode = ApiCaller.CallApiFull(lat, lon);
         String path = "data/temp.txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        FileOutputStream fos = new FileOutputStream(path);
         try {
-            FileWriter myWriter = new FileWriter(f);
-            myWriter.write(responseCode);
-            myWriter.close();
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
+            pw.close();
+            fos.flush();
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
@@ -63,17 +67,19 @@ public class PostController {
     }
 
     @GetMapping("/api/forecast")
-    public static String getFullForecast(String s) throws URISyntaxException {
+    public static String getFullForecast(String s) throws URISyntaxException, IOException {
         String path = "data/temp.txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
+        
         try {
-            Scanner reader = new Scanner(f);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String output="";
-            while (reader.hasNextLine()) {
-                output+=reader.nextLine();
+            String line;
+            while ((line = br.readLine())!=null ) {
+                output+=line;
             }
-            reader.close();
+            br.close();
+            is.close();
             return output;
         } catch (FileNotFoundException e) {
             System.out.println("Couldn't find login info file.");
@@ -82,7 +88,7 @@ public class PostController {
     }
     
     @PostMapping("/api/hist")
-    public static String handleApiFullHistCall(@RequestBody Map<String, String> formData) throws URISyntaxException {
+    public static String handleApiFullHistCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException {
         // Process the data (e.g., save to database)
         String lat = formData.get("lat");
         String lon = formData.get("lon");
@@ -91,12 +97,11 @@ public class PostController {
         // Prepare response data
         String responseCode = ApiCaller.CallApiFullHist(lat, lon, date);
         String path = "data/temp.txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        FileOutputStream fos = new FileOutputStream(path);
         try {
-            FileWriter myWriter = new FileWriter(f);
-            myWriter.write(responseCode);
-            myWriter.close();
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
+            pw.close();
+            fos.flush();
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
@@ -104,17 +109,19 @@ public class PostController {
     }
 
     @GetMapping("/api/hist")
-    public static String getFullHistory(String s) throws URISyntaxException {
+    public static String getFullHistory(String s) throws URISyntaxException, IOException {
         String path = "data/temp.txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
+        
         try {
-            Scanner reader = new Scanner(f);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String output="";
-            while (reader.hasNextLine()) {
-                output+=reader.nextLine();
+            String line;
+            while ((line = br.readLine())!=null ) {
+                output+=line;
             }
-            reader.close();
+            br.close();
+            is.close();
             return output;
         } catch (FileNotFoundException e) {
             System.out.println("Couldn't find login info file.");
@@ -153,16 +160,10 @@ public class PostController {
     
     @PostMapping("/submitRegister")
     public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException, IOException {
-        String path = "/data/login.txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        JarURLConnection jarConnect = (JarURLConnection) fileUrl.openConnection();
+        String path = "data/login.txt";
         
-        System.out.println("URL: "+fileUrl);
-        System.out.println("URI: "+fileUrl.toURI());
-        System.out.println("JarURL: "+jarConnect.toString());  
-        
-        File f = new File(jarConnect.toString());
-        int s = Account.register(f, name, pwd, card);
+        FileOutputStream fos = new FileOutputStream(path,true);
+        int s = Account.register(fos, name, pwd, card);
         if (s==1) {
             ra.addAttribute("name", name);
             //System.out.println(ra);
@@ -174,22 +175,18 @@ public class PostController {
     }
     
     @PostMapping("/submitPlace")
-    public static int handleNewPlace(@RequestBody Map<String, String> formData) throws URISyntaxException {
+    public static int handleNewPlace(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException {
         String user = formData.get("user");
         String n = formData.get("placeName");
         String lat = formData.get("lat");
         String lon = formData.get("lon");
         String path = "data/"+user+".txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        FileOutputStream fos = new FileOutputStream(path,true);
         try {
-            FileWriter fw = new FileWriter(f, true);
-            try (BufferedWriter bw = new BufferedWriter(fw)) {
-                bw.write(n+";"+lat+";"+lon);
-                    bw.newLine();
-                    bw.close();
-            }
-            fw.close();
+            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
+            pw.println(n+";"+lat+";"+lon);
+            pw.close();
+            fos.flush();
             return 1;
         } catch (IOException e) {
             System.out.println("Couldn't find favorite info file.");
@@ -198,20 +195,20 @@ public class PostController {
     }
     
     @PostMapping("/loadPlaces")
-    public static String[] handlePlaceLoad(@RequestBody Map<String, String> formData) throws URISyntaxException {
+    public static String[] handlePlaceLoad(@RequestBody Map<String, String> formData) throws URISyntaxException, IOException {
         String user = formData.get("user");
         //System.out.println("pog");
         String path = "data/"+user+".txt";
-        URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-        File f = new File(fileUrl.toURI());
+        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
         List<String> lines=new ArrayList<>();
         try {
-            Scanner reader = new Scanner(f);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                lines.add(line);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String Line;
+            while ((Line = br.readLine())!=null ) {
+                lines.add(Line);
             }
-            reader.close();
+            br.close();
+            is.close();
             String[] output = new String[lines.size()];
             output=lines.toArray(output);
             return output;

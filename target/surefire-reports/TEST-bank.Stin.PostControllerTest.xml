@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="bank.Stin.PostControllerTest" time="13.704" tests="14" errors="4" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="bank.Stin.PostControllerTest" time="12.236" tests="14" errors="5" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="CZ"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire10945349946118833317\surefirebooter-20240522230941648_3.jar C:\Users\Dell\AppData\Local\Temp\surefire10945349946118833317 2024-05-22T23-09-41_181-jvmRun1 surefire-20240522230941648_1tmp surefire_0-20240522230941648_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire5404037498843565010\surefirebooter-20240523102242183_3.jar C:\Users\Dell\AppData\Local\Temp\surefire5404037498843565010 2024-05-23T10-22-41_831-jvmRun1 surefire-20240523102242183_1tmp surefire_0-20240523102242183_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Dell\Documents\NetBeansProjects\STIN_Sem\target\test-classes;C:\Users\Dell\Documents\NetBeansProjects\STIN_Sem\target\classes;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.5\spring-boot-starter-web-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.5\spring-boot-starter-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot\3.2.5\spring-boot-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.5\spring-boot-autoconfigure-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.5\spring-boot-starter-logging-3.2.5.jar;C:\Users\Dell\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\Dell\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\Dell\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\Dell\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\Dell\.m2\repository\org\slf4j\jul-to-slf4j\2.0.13\jul-to-slf4j-2.0.13.jar;C:\Users\Dell\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Dell\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.5\spring-boot-starter-json-3.2.5.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.4\jackson-databind-2.15.4.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.4\jackson-annotations-2.15.4.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.4\jackson-core-2.15.4.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\Dell\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.5\spring-boot-starter-tomcat-3.2.5.jar;C:\Users\Dell\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.20\tomcat-embed-core-10.1.20.jar;C:\Users\Dell\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.20\tomcat-embed-el-10.1.20.jar;C:\Users\Dell\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.20\tomcat-embed-websocket-10.1.20.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-web\6.1.6\spring-web-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-beans\6.1.6\spring-beans-6.1.6.jar;C:\Users\Dell\.m2\repository\io\micrometer\micrometer-observation\1.12.5\micrometer-observation-1.12.5.jar;C:\Users\Dell\.m2\repository\io\micrometer\micrometer-commons\1.12.5\micrometer-commons-1.12.5.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-webmvc\6.1.6\spring-webmvc-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-aop\6.1.6\spring-aop-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-context\6.1.6\spring-context-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-expression\6.1.6\spring-expression-6.1.6.jar;C:\Users\Dell\.m2\repository\org\json\json\20210307\json-20210307.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.5\spring-boot-starter-test-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-test\3.2.5\spring-boot-test-3.2.5.jar;C:\Users\Dell\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.5\spring-boot-test-autoconfigure-3.2.5.jar;C:\Users\Dell\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\Dell\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\Dell\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\Dell\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\Dell\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\Dell\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\Dell\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\Dell\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\Dell\.m2\repository\net\bytebuddy\byte-buddy\1.14.13\byte-buddy-1.14.13.jar;C:\Users\Dell\.m2\repository\org\awaitility\awaitility\4.2.1\awaitility-4.2.1.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\Dell\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\Dell\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.13\byte-buddy-agent-1.14.13.jar;C:\Users\Dell\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Dell\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\Dell\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\Dell\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-core\6.1.6\spring-core-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-jcl\6.1.6\spring-jcl-6.1.6.jar;C:\Users\Dell\.m2\repository\org\springframework\spring-test\6.1.6\spring-test-6.1.6.jar;C:\Users\Dell\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="windows-1250"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire10945349946118833317\surefirebooter-20240522230941648_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire5404037498843565010\surefirebooter-20240523102242183_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -50,7 +50,7 @@
     <property name="user.dir" value="C:\Users\Dell\Documents\NetBeansProjects\STIN_Sem"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="11304"/>
+    <property name="PID" value="18700"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="CONSOLE_LOG_CHARSET" value="windows-1250"/>
     <property name="native.encoding" value="Cp1250"/>
@@ -62,9 +62,20 @@
     <property name="java.class.version" value="61.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[Stin] "/>
   </properties>
-  <testcase name="ApiReqHistPostCorrect" classname="bank.Stin.PostControllerTest" time="3.07">
-    <system-out><![CDATA[23:09:48.018 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [bank.Stin.PostControllerTest]: PostControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:09:49.604 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration bank.Stin.Application for test class bank.Stin.PostControllerTest
+  <testcase name="ApiReqHistPostCorrect" classname="bank.Stin.PostControllerTest" time="3.291">
+    <error message="data\temp.txt (Systém nemůže nalézt uvedenou cestu)" type="java.io.FileNotFoundException"><![CDATA[java.io.FileNotFoundException: data\temp.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at bank.Stin.PostController.handleApiFullHistCall(PostController.java:100)
+	at bank.Stin.PostControllerTest.ApiReqHistPostCorrect(PostControllerTest.java:84)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></error>
+    <system-out><![CDATA[10:22:48.352 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [bank.Stin.PostControllerTest]: PostControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:22:48.798 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration bank.Stin.Application for test class bank.Stin.PostControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -74,7 +85,7 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2024-05-22T23:09:51.807+02:00  WARN 11304 --- [Stin] [           main] ory$DuplicateJsonObjectContextCustomizer : 
+2024-05-23T10:22:50.401+02:00  WARN 18700 --- [Stin] [           main] ory$DuplicateJsonObjectContextCustomizer : 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -83,70 +94,56 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2024-05-22T23:09:51.908+02:00  INFO 11304 --- [Stin] [           main] bank.Stin.PostControllerTest             : Starting PostControllerTest using Java 17.0.2 with PID 11304 (started by Dell in C:\Users\Dell\Documents\NetBeansProjects\STIN_Sem)
-2024-05-22T23:09:51.910+02:00  INFO 11304 --- [Stin] [           main] bank.Stin.PostControllerTest             : No active profile set, falling back to 1 default profile: "default"
-2024-05-22T23:09:55.208+02:00  INFO 11304 --- [Stin] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2024-05-22T23:09:56.045+02:00  INFO 11304 --- [Stin] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-05-22T23:09:56.049+02:00  INFO 11304 --- [Stin] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-05-22T23:09:56.054+02:00  INFO 11304 --- [Stin] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-2024-05-22T23:09:56.109+02:00  INFO 11304 --- [Stin] [           main] bank.Stin.PostControllerTest             : Started PostControllerTest in 5.456 seconds (process running for 14.133)
+2024-05-23T10:22:50.470+02:00  INFO 18700 --- [Stin] [           main] bank.Stin.PostControllerTest             : Starting PostControllerTest using Java 17.0.2 with PID 18700 (started by Dell in C:\Users\Dell\Documents\NetBeansProjects\STIN_Sem)
+2024-05-23T10:22:50.473+02:00  INFO 18700 --- [Stin] [           main] bank.Stin.PostControllerTest             : No active profile set, falling back to 1 default profile: "default"
+2024-05-23T10:22:53.826+02:00  INFO 18700 --- [Stin] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-05-23T10:22:54.768+02:00  INFO 18700 --- [Stin] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-05-23T10:22:54.768+02:00  INFO 18700 --- [Stin] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-05-23T10:22:54.778+02:00  INFO 18700 --- [Stin] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2024-05-23T10:22:54.872+02:00  INFO 18700 --- [Stin] [           main] bank.Stin.PostControllerTest             : Started PostControllerTest in 5.449 seconds (process running for 12.381)
 ]]></system-out>
   </testcase>
-  <testcase name="LoginHandleCorrect" classname="bank.Stin.PostControllerTest" time="0.221">
-    <error message="Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader &apos;bootstrap&apos;)" type="jakarta.servlet.ServletException"><![CDATA[jakarta.servlet.ServletException: Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
-	at bank.Stin.PostControllerTest.LoginHandleCorrect(PostControllerTest.java:119)
+  <testcase name="LoginHandleCorrect" classname="bank.Stin.PostControllerTest" time="0.271"/>
+  <testcase name="loadPlaceCorrect" classname="bank.Stin.PostControllerTest" time="0.006"/>
+  <testcase name="ApiReqPostCorrect" classname="bank.Stin.PostControllerTest" time="0.247">
+    <error message="data\temp.txt (Systém nemůže nalézt uvedenou cestu)" type="java.io.FileNotFoundException"><![CDATA[java.io.FileNotFoundException: data\temp.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
+	at bank.Stin.PostController.handleApiFullCall(PostController.java:58)
+	at bank.Stin.PostControllerTest.ApiReqPostCorrect(PostControllerTest.java:66)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at bank.Stin.PostController.handleLoginAttempt(PostController.java:140)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	... 24 more
 ]]></error>
   </testcase>
-  <testcase name="loadPlaceCorrect" classname="bank.Stin.PostControllerTest" time="0.007"/>
-  <testcase name="ApiReqPostCorrect" classname="bank.Stin.PostControllerTest" time="0.27"/>
-  <testcase name="PostControllerWrong" classname="bank.Stin.PostControllerTest" time="0.256">
+  <testcase name="PostControllerWrong" classname="bank.Stin.PostControllerTest" time="0.251">
     <system-out><![CDATA[Missing hourly field.
 org.json.JSONException: JSONObject["hourly"] not found.
 ]]></system-out>
   </testcase>
-  <testcase name="LoginHandleWorng" classname="bank.Stin.PostControllerTest" time="0.016">
-    <error message="Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader &apos;bootstrap&apos;)" type="jakarta.servlet.ServletException"><![CDATA[jakarta.servlet.ServletException: Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
+  <testcase name="LoginHandleWorng" classname="bank.Stin.PostControllerTest" time="0.011"/>
+  <testcase name="RegisterHandleCorrect" classname="bank.Stin.PostControllerTest" time="0.021">
+    <error message="data\login.txt (Systém nemůže nalézt uvedenou cestu)" type="java.io.FileNotFoundException"><![CDATA[java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:165)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
 	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
@@ -167,89 +164,57 @@ org.json.JSONException: JSONObject["hourly"] not found.
 	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
 	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
 	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
-	at bank.Stin.PostControllerTest.LoginHandleWorng(PostControllerTest.java:128)
+	at bank.Stin.PostControllerTest.RegisterHandleCorrect(PostControllerTest.java:139)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at bank.Stin.PostController.handleLoginAttempt(PostController.java:140)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	... 24 more
 ]]></error>
   </testcase>
-  <testcase name="RegisterHandleCorrect" classname="bank.Stin.PostControllerTest" time="0.014">
-    <error message="Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader &apos;bootstrap&apos;)" type="jakarta.servlet.ServletException"><![CDATA[jakarta.servlet.ServletException: Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
-	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
-	at bank.Stin.PostControllerTest.RegisterHandleCorrect(PostControllerTest.java:137)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:162)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	... 24 more
-]]></error>
-  </testcase>
-  <testcase name="PostControllerHistCorrect" classname="bank.Stin.PostControllerTest" time="0.261">
-    <system-out><![CDATA[{"elevation":14,"hourly_units":{"time":"iso8601","weather_code":"wmo code"},"generationtime_ms":0.06401538848876953,"timezone_abbreviation":"GMT","timezone":"GMT","latitude":50.22847,"utc_offset_seconds":0,"hourly":{"time":["2024-05-15T00:00","2024-05-15T01:00","2024-05-15T02:00","2024-05-15T03:00","2024-05-15T04:00","2024-05-15T05:00","2024-05-15T06:00","2024-05-15T07:00","2024-05-15T08:00","2024-05-15T09:00","2024-05-15T10:00","2024-05-15T11:00","2024-05-15T12:00","2024-05-15T13:00","2024-05-15T14:00","2024-05-15T15:00","2024-05-15T16:00","2024-05-15T17:00","2024-05-15T18:00","2024-05-15T19:00","2024-05-15T20:00","2024-05-15T21:00","2024-05-15T22:00","2024-05-15T23:00"],"weather_code":[0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,51]},"longitude":50.210526}
+  <testcase name="PostControllerHistCorrect" classname="bank.Stin.PostControllerTest" time="0.281">
+    <system-out><![CDATA[{"elevation":14,"hourly_units":{"time":"iso8601","weather_code":"wmo code"},"generationtime_ms":0.049948692321777344,"timezone_abbreviation":"GMT","timezone":"GMT","latitude":50.22847,"utc_offset_seconds":0,"hourly":{"time":["2024-05-15T00:00","2024-05-15T01:00","2024-05-15T02:00","2024-05-15T03:00","2024-05-15T04:00","2024-05-15T05:00","2024-05-15T06:00","2024-05-15T07:00","2024-05-15T08:00","2024-05-15T09:00","2024-05-15T10:00","2024-05-15T11:00","2024-05-15T12:00","2024-05-15T13:00","2024-05-15T14:00","2024-05-15T15:00","2024-05-15T16:00","2024-05-15T17:00","2024-05-15T18:00","2024-05-15T19:00","2024-05-15T20:00","2024-05-15T21:00","2024-05-15T22:00","2024-05-15T23:00"],"weather_code":[0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,51]},"longitude":50.210526}
 ]]></system-out>
   </testcase>
-  <testcase name="ApiReqHistGetCorrect" classname="bank.Stin.PostControllerTest" time="0.012"/>
-  <testcase name="submitPlaceCorrect" classname="bank.Stin.PostControllerTest" time="0.008"/>
-  <testcase name="PostControllerHistWrong" classname="bank.Stin.PostControllerTest" time="0.285">
+  <testcase name="ApiReqHistGetCorrect" classname="bank.Stin.PostControllerTest" time="0.015"/>
+  <testcase name="submitPlaceCorrect" classname="bank.Stin.PostControllerTest" time="0.009">
+    <error message="data\test.txt (Systém nemůže nalézt uvedenou cestu)" type="java.io.FileNotFoundException"><![CDATA[java.io.FileNotFoundException: data\test.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.PostController.handleNewPlace(PostController.java:184)
+	at bank.Stin.PostControllerTest.submitPlaceCorrect(PostControllerTest.java:166)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></error>
+  </testcase>
+  <testcase name="PostControllerHistWrong" classname="bank.Stin.PostControllerTest" time="0.284">
     <system-out><![CDATA[{"reason":"Latitude must be in range of -90 to 90Â°. Given: 91.23.","error":true}
 Missing hourly field.
 org.json.JSONException: JSONObject["hourly"] not found.
 ]]></system-out>
   </testcase>
-  <testcase name="ApiReqGetCorrect" classname="bank.Stin.PostControllerTest" time="0.018"/>
-  <testcase name="RegisterHandleWrong" classname="bank.Stin.PostControllerTest" time="0.012">
-    <error message="Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader &apos;bootstrap&apos;)" type="jakarta.servlet.ServletException"><![CDATA[jakarta.servlet.ServletException: Request processing failed: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
+  <testcase name="ApiReqGetCorrect" classname="bank.Stin.PostControllerTest" time="0.011"/>
+  <testcase name="RegisterHandleWrong" classname="bank.Stin.PostControllerTest" time="0.01">
+    <error message="data\login.txt (Systém nemůže nalézt uvedenou cestu)" type="java.io.FileNotFoundException"><![CDATA[java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:165)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
 	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
@@ -270,27 +235,11 @@ org.json.JSONException: JSONObject["hourly"] not found.
 	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:151)
 	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
 	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
-	at bank.Stin.PostControllerTest.RegisterHandleWrong(PostControllerTest.java:147)
+	at bank.Stin.PostControllerTest.RegisterHandleWrong(PostControllerTest.java:149)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.ClassCastException: class sun.net.www.protocol.file.FileURLConnection cannot be cast to class java.net.JarURLConnection (sun.net.www.protocol.file.FileURLConnection and java.net.JarURLConnection are in module java.base of loader 'bootstrap')
-	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:162)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	... 24 more
 ]]></error>
   </testcase>
-  <testcase name="PostControllerCorrect" classname="bank.Stin.PostControllerTest" time="0.273"/>
+  <testcase name="PostControllerCorrect" classname="bank.Stin.PostControllerTest" time="0.275"/>
 </testsuite>

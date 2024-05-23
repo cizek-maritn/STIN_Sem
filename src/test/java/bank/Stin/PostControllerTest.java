@@ -4,6 +4,8 @@
  */
 package bank.Stin;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -56,7 +58,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqPostCorrect() throws URISyntaxException {
+    public void ApiReqPostCorrect() throws URISyntaxException, IOException {
         Map<String, String> formData = new HashMap<>();
         formData.put("lat","50.23");
         formData.put("lon","50.23");
@@ -66,14 +68,14 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqGetCorrect() throws URISyntaxException {
+    public void ApiReqGetCorrect() throws URISyntaxException, IOException {
         
         String result = PostController.getFullForecast("test");
         Assertions.assertNotNull(result);
     }
     
     @Test
-    public void ApiReqHistPostCorrect() throws URISyntaxException {
+    public void ApiReqHistPostCorrect() throws URISyntaxException, IOException {
         Map<String, String> formData = new HashMap<>();
         formData.put("lat","50.23");
         formData.put("lon","50.23");
@@ -84,7 +86,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void ApiReqHistGetCorrect() throws URISyntaxException {
+    public void ApiReqHistGetCorrect() throws URISyntaxException, IOException {
         
         String result = PostController.getFullHistory("test");
         Assertions.assertNotNull(result);
@@ -153,7 +155,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void submitPlaceCorrect() throws URISyntaxException {
+    public void submitPlaceCorrect() throws URISyntaxException, FileNotFoundException {
         Map<String, String> formData = new HashMap<>();
         formData.put("user", "test");
         formData.put("lat","50.23");
@@ -166,7 +168,7 @@ public class PostControllerTest {
     }
     
     @Test
-    public void loadPlaceCorrect() throws URISyntaxException {
+    public void loadPlaceCorrect() throws URISyntaxException, IOException {
         Map<String, String> formData = new HashMap<>();
         formData.put("user", "test");        
 

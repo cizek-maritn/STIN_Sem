@@ -5,6 +5,7 @@
 package bank.Stin;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -42,37 +43,37 @@ public class AccountTest {
     
     @Test
     public void registerTestCorrect() throws URISyntaxException, IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        int i = Account.register(login, "alfons", "Password1", 1234567890123456L);
+        String path = "testfiles/login.txt";
+        
+        FileOutputStream fos = new FileOutputStream(path,true);
+        int i = Account.register(fos, "alfons", "Password1", 1234567890123456L);
         Assertions.assertEquals(1,i);
     }
     
     @Test
     public void registerTestWrongName() throws URISyntaxException, IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        int i = Account.register(login, "(lk=56./", "Password1", 1234567890123456L);
+        String path = "data/login.txt";
+        
+        FileOutputStream fos = new FileOutputStream(path,true);
+        int i = Account.register(fos, "(lk=56./", "Password1", 1234567890123456L);
         Assertions.assertEquals(2,i);
     }
     
     @Test
     public void registerTestWrongPass() throws URISyntaxException, IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        int i = Account.register(login, "horac", "--- aihsf+1=", 1234567890123456L);
+        String path = "data/login.txt";
+        
+        FileOutputStream fos = new FileOutputStream(path,true);
+        int i = Account.register(fos, "horac", "--- aihsf+1=", 1234567890123456L);
         Assertions.assertEquals(3,i);
     }
     
     @Test
     public void registerTestWrongCard() throws URISyntaxException, IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        int i = Account.register(login, "horac", "Password1", 65124);
+        String path = "data/login.txt";
+        
+        FileOutputStream fos = new FileOutputStream(path,true);
+        int i = Account.register(fos, "horac", "Password1", 65124);
         Assertions.assertEquals(4,i);
     }
 }

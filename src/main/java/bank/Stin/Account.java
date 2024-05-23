@@ -8,10 +8,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
@@ -39,32 +43,24 @@ class Account {
         return null;
     }
     
-    public static int register(File f, String n, String p, long c) throws URISyntaxException, IOException {
+    public static int register(FileOutputStream stream, String n, String p, long c) throws URISyntaxException, IOException {
         boolean nCheck=DataChecker.stringChecker(n);
         boolean pCheck=DataChecker.stringChecker(p) && DataChecker.passChecker(p);
         boolean cCheck=DataChecker.cardChecker(c);
         
         if (nCheck && pCheck && cCheck) {
             try {
-                FileWriter fw = new FileWriter(f, true);
-                System.out.println(f);
-                try (BufferedWriter bw = new BufferedWriter(fw)) {
-                    bw.write(n+";"+p+";"+c);
-                    bw.newLine();
-                    bw.close();
-                }
-                fw.close();
+                PrintWriter pw = new PrintWriter(new OutputStreamWriter(stream));
+                pw.println(n+";"+p+";"+c);
+                pw.close();
+                stream.flush();
                 
                 String path = "data/"+n+".txt";
-                URL fileUrl = ResourceLoader.class.getClassLoader().getResource(path);
-                
-                File newFile = new File(fileUrl.toURI());
-                newFile.createNewFile();
+                try (FileOutputStream fos = new FileOutputStream(path)) { 
+                }
                 return 1;
             } catch (IOException e) {
                 System.out.println("Couldn't find login info file.");
-                System.out.println(f);
-                f.createNewFile();
             }
         } else {
             if (!nCheck) {

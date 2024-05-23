@@ -1,11 +1,47 @@
 -------------------------------------------------------------------------------
 Test set: bank.Stin.AccountTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.328 s <<< FAILURE! -- in bank.Stin.AccountTest
-bank.Stin.AccountTest.registerTestCorrect -- Time elapsed: 0.046 s <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "java.net.URL.toURI()" because "fileUrl" is null
-	at bank.Stin.Account.register(Account.java:57)
-	at bank.Stin.AccountTest.registerTestCorrect(AccountTest.java:46)
+Tests run: 6, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.612 s <<< FAILURE! -- in bank.Stin.AccountTest
+bank.Stin.AccountTest.registerTestCorrect -- Time elapsed: 0.092 s <<< ERROR!
+java.io.FileNotFoundException: testfiles\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.AccountTest.registerTestCorrect(AccountTest.java:48)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+bank.Stin.AccountTest.registerTestWrongCard -- Time elapsed: 0.013 s <<< ERROR!
+java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.AccountTest.registerTestWrongCard(AccountTest.java:75)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+bank.Stin.AccountTest.registerTestWrongName -- Time elapsed: 0.102 s <<< ERROR!
+java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.AccountTest.registerTestWrongName(AccountTest.java:57)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+bank.Stin.AccountTest.registerTestWrongPass -- Time elapsed: 0.006 s <<< ERROR!
+java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
+	at bank.Stin.AccountTest.registerTestWrongPass(AccountTest.java:66)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
