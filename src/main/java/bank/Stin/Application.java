@@ -17,10 +17,10 @@ public class Application {
                 Class.forName("org.sqlite.JDBC");
                 dbCon = DriverManager.getConnection("jdbc:sqlite:test.db");
                 Statement st=dbCon.createStatement();
-                String sql = "CREATE TABLE LOGIN" +
+                String sql = "CREATE TABLE IF NOT EXISTS LOGIN" +
                         "(INFO TEXT PRIMARY KEY NOT NULL)";
                 st.execute(sql);
-                sql="CREATE TABLE TEMP" +
+                sql="CREATE TABLE IF NOT EXISTS TEMP" +
                         "(ID INT PRIMARY KEY NOT NULL,"+
                         "MSG TEXT NOT NULL)";
                 st.execute(sql);

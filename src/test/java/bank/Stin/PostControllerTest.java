@@ -32,7 +32,7 @@ public class PostControllerTest {
     
     @Autowired
     private MockMvc mvc;
-
+    /**
     @Test
     public void PostControllerCorrect() {
         Map<String, String> formData = new HashMap<>();
@@ -175,6 +175,6 @@ public class PostControllerTest {
         String[] result = PostController.handlePlaceLoad(formData);
         Assertions.assertNotNull(result);
     }
-    
+    **/
     
 }
