@@ -1,38 +1,38 @@
 -------------------------------------------------------------------------------
 Test set: bank.Stin.PostControllerTest
 -------------------------------------------------------------------------------
-Tests run: 14, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 12.24 s <<< FAILURE! -- in bank.Stin.PostControllerTest
-bank.Stin.PostControllerTest.ApiReqHistPostCorrect -- Time elapsed: 3.291 s <<< ERROR!
+Tests run: 14, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 11.63 s <<< FAILURE! -- in bank.Stin.PostControllerTest
+bank.Stin.PostControllerTest.ApiReqHistPostCorrect -- Time elapsed: 3.038 s <<< ERROR!
 java.io.FileNotFoundException: data\temp.txt (Systém nemůže nalézt uvedenou cestu)
 	at java.base/java.io.FileOutputStream.open0(Native Method)
 	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
-	at bank.Stin.PostController.handleApiFullHistCall(PostController.java:100)
+	at bank.Stin.PostController.handleApiFullHistCall(PostController.java:101)
 	at bank.Stin.PostControllerTest.ApiReqHistPostCorrect(PostControllerTest.java:84)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-bank.Stin.PostControllerTest.ApiReqPostCorrect -- Time elapsed: 0.247 s <<< ERROR!
+bank.Stin.PostControllerTest.ApiReqPostCorrect -- Time elapsed: 0.248 s <<< ERROR!
 java.io.FileNotFoundException: data\temp.txt (Systém nemůže nalézt uvedenou cestu)
 	at java.base/java.io.FileOutputStream.open0(Native Method)
 	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
-	at bank.Stin.PostController.handleApiFullCall(PostController.java:58)
+	at bank.Stin.PostController.handleApiFullCall(PostController.java:59)
 	at bank.Stin.PostControllerTest.ApiReqPostCorrect(PostControllerTest.java:66)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-bank.Stin.PostControllerTest.RegisterHandleCorrect -- Time elapsed: 0.021 s <<< ERROR!
+bank.Stin.PostControllerTest.RegisterHandleCorrect -- Time elapsed: 0.015 s <<< ERROR!
 java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
 	at java.base/java.io.FileOutputStream.open0(Native Method)
 	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
-	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:165)
+	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:166)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -71,25 +71,25 @@ java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-bank.Stin.PostControllerTest.submitPlaceCorrect -- Time elapsed: 0.009 s <<< ERROR!
+bank.Stin.PostControllerTest.submitPlaceCorrect -- Time elapsed: 0.008 s <<< ERROR!
 java.io.FileNotFoundException: data\test.txt (Systém nemůže nalézt uvedenou cestu)
 	at java.base/java.io.FileOutputStream.open0(Native Method)
 	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
-	at bank.Stin.PostController.handleNewPlace(PostController.java:184)
+	at bank.Stin.PostController.handleNewPlace(PostController.java:187)
 	at bank.Stin.PostControllerTest.submitPlaceCorrect(PostControllerTest.java:166)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-bank.Stin.PostControllerTest.RegisterHandleWrong -- Time elapsed: 0.010 s <<< ERROR!
+bank.Stin.PostControllerTest.RegisterHandleWrong -- Time elapsed: 0.006 s <<< ERROR!
 java.io.FileNotFoundException: data\login.txt (Systém nemůže nalézt uvedenou cestu)
 	at java.base/java.io.FileOutputStream.open0(Native Method)
 	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:155)
-	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:165)
+	at bank.Stin.PostController.handleRegisterAttempt(PostController.java:166)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.JarURLConnection;
@@ -30,6 +31,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import java.sql.*;
 
 @RestController
 public class PostController {
@@ -47,48 +49,36 @@ public class PostController {
     }
     
     @PostMapping("/api/forecast")
-    public static String handleApiFullCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException {
+    public static String handleApiFullCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException, SQLException {
         // Process the data (e.g., save to database)
         String lat = formData.get("lat");
         String lon = formData.get("lon");
         
         // Prepare response data
         String responseCode = ApiCaller.CallApiFull(lat, lon);
-        String path = "data/temp.txt";
-        FileOutputStream fos = new FileOutputStream(path);
-        try {
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
-            pw.close();
-            fos.flush();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
+        Statement s=Application.dbCon.createStatement();
+        String sql="UPDATE TEMP set MSG='"+responseCode+"' WHERE ID=1;";
+        s.execute(sql);
+        s.close();
         return getFullForecast(responseCode);
     }
 
     @GetMapping("/api/forecast")
-    public static String getFullForecast(String s) throws URISyntaxException, IOException {
-        String path = "data/temp.txt";
-        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
-        
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String output="";
-            String line;
-            while ((line = br.readLine())!=null ) {
-                output+=line;
+    public static String getFullForecast(String s) throws URISyntaxException, IOException, SQLException {
+        try (Statement st = Application.dbCon.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT * FROM TEMP");
+            String msg="";
+            while (rs.next()) {
+                msg=rs.getString("MSG");
             }
-            br.close();
-            is.close();
-            return output;
-        } catch (FileNotFoundException e) {
-            System.out.println("Couldn't find login info file.");
+            rs.close();
+            st.close();
+            return msg;
         }
-        return null;
     }
     
     @PostMapping("/api/hist")
-    public static String handleApiFullHistCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException {
+    public static String handleApiFullHistCall(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, IOException, SQLException {
         // Process the data (e.g., save to database)
         String lat = formData.get("lat");
         String lon = formData.get("lon");
@@ -96,37 +86,25 @@ public class PostController {
         
         // Prepare response data
         String responseCode = ApiCaller.CallApiFullHist(lat, lon, date);
-        String path = "data/temp.txt";
-        FileOutputStream fos = new FileOutputStream(path);
-        try {
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
-            pw.close();
-            fos.flush();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
+        Statement s=Application.dbCon.createStatement();
+        String sql="UPDATE TEMP set MSG='"+responseCode+"' WHERE ID=1;";
+        s.execute(sql);
+        s.close();
         return getFullHistory(responseCode);
     }
 
     @GetMapping("/api/hist")
-    public static String getFullHistory(String s) throws URISyntaxException, IOException {
-        String path = "data/temp.txt";
-        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
-        
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String output="";
-            String line;
-            while ((line = br.readLine())!=null ) {
-                output+=line;
+    public static String getFullHistory(String s) throws URISyntaxException, IOException, SQLException {
+        try (Statement st = Application.dbCon.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT * FROM TEMP");
+            String msg="";
+            while (rs.next()) {
+                msg=rs.getString("MSG");
             }
-            br.close();
-            is.close();
-            return output;
-        } catch (FileNotFoundException e) {
-            System.out.println("Couldn't find login info file.");
+            rs.close();
+            st.close();
+            return msg;
         }
-        return null;
     }
     
     @PostMapping("/submitHist")
@@ -142,12 +120,8 @@ public class PostController {
     }
     
     @PostMapping("/submitLogin")
-    public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException, IOException {
-        String path = "data/login.txt";
-        
-        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
-        System.out.println(is);
-        String s = Account.login(is, name, pwd);
+    public static RedirectView handleLoginAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, RedirectAttributes ra) throws URISyntaxException, IOException, SQLException {
+        String s = Account.login(name, pwd);
         if (s!=null) {
             ra.addAttribute("name", name);
             //System.out.println(ra);
@@ -159,12 +133,8 @@ public class PostController {
     }
     
     @PostMapping("/submitRegister")
-    public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException, IOException {
-        String path = "data/login.txt";
-        
-        FileOutputStream fos = new FileOutputStream(path,true);
-        System.out.println(fos);
-        int s = Account.register(fos, name, pwd, card);
+    public static RedirectView handleRegisterAttempt(@RequestParam("name") String name, @RequestParam("pwd") String pwd, @RequestParam("card") long card, RedirectAttributes ra) throws URISyntaxException, IOException, SQLException {
+        int s = Account.register(name, pwd, card);
         if (s==1) {
             ra.addAttribute("name", name);
             //System.out.println(ra);
@@ -176,46 +146,38 @@ public class PostController {
     }
     
     @PostMapping("/submitPlace")
-    public static int handleNewPlace(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException {
+    public static int handleNewPlace(@RequestBody Map<String, String> formData) throws URISyntaxException, FileNotFoundException, SQLException {
         String user = formData.get("user");
         String n = formData.get("placeName");
         String lat = formData.get("lat");
         String lon = formData.get("lon");
-        String path = "data/"+user+".txt";
-        FileOutputStream fos = new FileOutputStream(path,true);
-        try {
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(fos));
-            pw.println(n+";"+lat+";"+lon);
-            pw.close();
-            fos.flush();
+        
+        try (Statement s = Application.dbCon.createStatement()) {
+            String data=n+";"+lat+";"+lon;
+            String sql="INSERT INTO "+user+" (PLACES) VALUES ("+data+");";
+            s.execute(sql);
             return 1;
-        } catch (IOException e) {
-            System.out.println("Couldn't find favorite info file.");
         }
-        return 0;
     }
     
     @PostMapping("/loadPlaces")
-    public static String[] handlePlaceLoad(@RequestBody Map<String, String> formData) throws URISyntaxException, IOException {
+    public static String[] handlePlaceLoad(@RequestBody Map<String, String> formData) throws URISyntaxException, IOException, SQLException {
         String user = formData.get("user");
         //System.out.println("pog");
-        String path = "data/"+user+".txt";
-        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
-        List<String> lines=new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String Line;
-            while ((Line = br.readLine())!=null ) {
-                lines.add(Line);
+        
+        try (Statement st = Application.dbCon.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT * FROM "+user);
+            List<String> lines=new ArrayList<>();
+            String place;
+            while (rs.next()) {
+                place=rs.getString("PLACES");
+                lines.add(place);
             }
-            br.close();
-            is.close();
+            rs.close();
+            st.close();
             String[] output = new String[lines.size()];
             output=lines.toArray(output);
             return output;
-        } catch (FileNotFoundException e) {
-            System.out.println("Couldnt find favorite place file");
         }
-        return null;
     }
 }

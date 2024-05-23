@@ -20,47 +20,39 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 import org.springframework.core.io.ResourceLoader;
+import java.sql.*;
 
 
 class Account {    
 
     //returns file with the accounts favorite places
-    public static String login(InputStream is, String n, String p) throws IOException {
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = br.readLine())!=null ) {
-                String[] data=line.split(";");
+    public static String login(String n, String p) throws IOException, SQLException {
+        Statement s=Application.dbCon.createStatement();
+        ResultSet rs = s.executeQuery("SELECT * FROM LOGIN;");
+        while (rs.next()) {
+            String line=rs.getString("INFO");
+            String[] data=line.split(";");
                 if (data[0].equals(n) && data[1].equals(p)) {
                     return data[0];
                 }
-            }
-            br.close();
-            is.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Couldn't find login info file.");
         }
         return null;
     }
     
-    public static int register(FileOutputStream stream, String n, String p, long c) throws URISyntaxException, IOException {
+    public static int register(String n, String p, long c) throws URISyntaxException, IOException, SQLException {
         boolean nCheck=DataChecker.stringChecker(n);
         boolean pCheck=DataChecker.stringChecker(p) && DataChecker.passChecker(p);
         boolean cCheck=DataChecker.cardChecker(c);
         
         if (nCheck && pCheck && cCheck) {
-            try {
-                PrintWriter pw = new PrintWriter(new OutputStreamWriter(stream));
-                pw.println(n+";"+p+";"+c);
-                pw.close();
-                stream.flush();
-                
-                String path = "data/"+n+".txt";
-                try (FileOutputStream fos = new FileOutputStream(path)) { 
-                }
+            try (Statement s = Application.dbCon.createStatement()) {
+                String data=n+";"+p+";"+c;
+                String sql="INSERT INTO LOGIN (INFO) VALUES ("+data+");";
+                s.execute(sql);
+                sql = "CREATE TABLE "+n+" (PLACES TEXT PRIMARY KEY NOT NULL)";
+                s.execute(sql);
+                s.close();
                 return 1;
-            } catch (IOException e) {
-                System.out.println("Couldn't find login info file.");
             }
         } else {
             if (!nCheck) {
