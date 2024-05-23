@@ -154,7 +154,7 @@ public class PostController {
         
         try (Statement s = Application.dbCon.createStatement()) {
             String data=n+"_"+lat+"_"+lon;
-            String sql="INSERT INTO "+user+" (PLACES) VALUES ("+data+");";
+            String sql="INSERT INTO "+user+" (PLACES) VALUES ('"+data+"');";
             s.execute(sql);
             return 1;
         }

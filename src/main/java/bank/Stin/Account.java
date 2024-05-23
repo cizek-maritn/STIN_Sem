@@ -47,7 +47,7 @@ class Account {
         if (nCheck && pCheck && cCheck) {
             try (Statement s = Application.dbCon.createStatement()) {
                 String data=n+"_"+p+"_"+c;
-                String sql="INSERT INTO LOGIN (INFO) VALUES ("+data+");";
+                String sql="INSERT INTO LOGIN (INFO) VALUES ('"+data+"');";
                 s.execute(sql);
                 sql = "CREATE TABLE "+n+" (PLACES TEXT PRIMARY KEY NOT NULL)";
                 s.execute(sql);
