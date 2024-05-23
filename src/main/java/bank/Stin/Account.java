@@ -31,7 +31,7 @@ class Account {
         ResultSet rs = s.executeQuery("SELECT * FROM LOGIN;");
         while (rs.next()) {
             String line=rs.getString("INFO");
-            String[] data=line.split(";");
+            String[] data=line.split("_");
                 if (data[0].equals(n) && data[1].equals(p)) {
                     return data[0];
                 }
@@ -46,7 +46,7 @@ class Account {
         
         if (nCheck && pCheck && cCheck) {
             try (Statement s = Application.dbCon.createStatement()) {
-                String data=n+";"+p+";"+c;
+                String data=n+"_"+p+"_"+c;
                 String sql="INSERT INTO LOGIN (INFO) VALUES ("+data+");";
                 s.execute(sql);
                 sql = "CREATE TABLE "+n+" (PLACES TEXT PRIMARY KEY NOT NULL)";

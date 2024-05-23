@@ -153,7 +153,7 @@ public class PostController {
         String lon = formData.get("lon");
         
         try (Statement s = Application.dbCon.createStatement()) {
-            String data=n+";"+lat+";"+lon;
+            String data=n+"_"+lat+"_"+lon;
             String sql="INSERT INTO "+user+" (PLACES) VALUES ("+data+");";
             s.execute(sql);
             return 1;
