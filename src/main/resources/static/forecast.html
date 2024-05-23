@@ -193,7 +193,7 @@
         .then(data => {
             data=JSON.parse(data);
             for(let i=0;i<data.length;i++) {
-                const dataString = data[i].replaceAll(";", " ");
+                const dataString = data[i].replaceAll("_", " ");
                 var opt = document.createElement("option");
                 opt.value=dataString;
                 opt.innerHTML=dataString;
