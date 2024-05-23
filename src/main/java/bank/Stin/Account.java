@@ -4,11 +4,14 @@
  */
 package bank.Stin;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
@@ -18,20 +21,20 @@ import org.springframework.core.io.ResourceLoader;
 class Account {    
 
     //returns file with the accounts favorite places
-    public static String login(File f, String n, String p) throws IOException {
+    public static String login(InputStream is, String n, String p) throws IOException {
         try {
-            Scanner reader = new Scanner(f);
-            while (reader.hasNextLine()) {
-                String[] line=reader.nextLine().split(";");
-                if (line[0].equals(n) && line[1].equals(p)) {
-                    return line[0];
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = br.readLine())!=null ) {
+                String[] data=line.split(";");
+                if (data[0].equals(n) && data[1].equals(p)) {
+                    return data[0];
                 }
             }
-            reader.close();
+            br.close();
+            is.close();
         } catch (FileNotFoundException e) {
             System.out.println("Couldn't find login info file.");
-            System.out.println(f);
-            f.createNewFile();
         }
         return null;
     }

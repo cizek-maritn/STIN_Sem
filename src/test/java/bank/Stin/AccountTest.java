@@ -6,10 +6,12 @@ package bank.Stin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ResourceLoader;
 
 /**
  *
@@ -22,19 +24,19 @@ public class AccountTest {
 
     @Test
     public void loginTestCorrect() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        String s = Account.login(login, "houba", "password");
+        String path = "data/login.txt";
+        
+        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
+        String s = Account.login(is, "houba", "password");
         Assertions.assertEquals("houba",s);
     }
     
     @Test
     public void loginTestWrong() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("data/login.txt");
-        File login = new File (resource.getFile());
-        String s = Account.login(login, "uagfbailjd", "password");
+        String path = "data/login.txt";
+        
+        InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
+        String s = Account.login(is, "uagfbailjd", "password");
         Assertions.assertNull(s);
     }
     
