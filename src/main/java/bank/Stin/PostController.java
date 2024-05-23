@@ -146,7 +146,7 @@ public class PostController {
         String path = "data/login.txt";
         
         InputStream is = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
-        
+        System.out.println(is);
         String s = Account.login(is, name, pwd);
         if (s!=null) {
             ra.addAttribute("name", name);
@@ -163,6 +163,7 @@ public class PostController {
         String path = "data/login.txt";
         
         FileOutputStream fos = new FileOutputStream(path,true);
+        System.out.println(fos);
         int s = Account.register(fos, name, pwd, card);
         if (s==1) {
             ra.addAttribute("name", name);
